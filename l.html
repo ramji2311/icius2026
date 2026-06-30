@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melange Conferences</title>
+    <link rel="shortcut icon" href="https://melangeconferences.com/img/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --transition: all 0.3s ease;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --hover-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+             background: linear-gradient(135deg, var(--primary) 0%, #517192 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo img {
+            max-width: 80%;
+            height: auto;
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: 100% 100%;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1.2s ease;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            animation: fadeInUp 1.4s ease;
+        }
+        
+        .hero-btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Section Styles */
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin: 40px 0 30px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        /* Horizontal Scrolling Conference Sections */
+        .conference-section {
+            margin-bottom: 50px;
+        }
+        
+        .conference-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 25px;
+            padding: 20px 10px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .conference-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .conference-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .conference-scroll::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+        
+        .conference-card {
+            flex: 0 0 350px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .conference-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .conference-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #f5f5f5; /* optional: background filler */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* shows full image */
+}
+
+/* Popup overlay */
+.image-popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.image-popup.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.image-popup img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  animation: zoomIn 0.3s ease;
+  background: #fff;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+        
+        .conference-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .card-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .card-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--accent);
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .card-link:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Navigation arrows for sections */
+        .section-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .nav-btn:hover {
+            background: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .conference-card {
+                flex: 0 0 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .hero {
+                padding: 70px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .conference-card {
+                flex: 0 0 280px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            nav ul {
+                gap: 15px;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .conference-card {
+                flex: 0 0 260px;
+            }
+            
+            .section-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="image/pic.jpeg" alt="Melange Conferences Logo">
+                    </div>
+                    <div class="logo-text">MÉLANGE CONFERENCES</div>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="conferences.html">Conferences</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Global Conferences for Knowledge Exchange</h1>
+            <p>Join researchers, academics, and professionals from around the world to share knowledge and foster collaboration across various disciplines.</p>
+            <a href="#conferences" class="hero-btn">Explore Conferences</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container" id="conferences">
+        <!-- Upcoming Conferences -->
+        <section class="conference-section">
+            <h2 class="section-title">Upcoming Conferences</h2>
+            <div class="conference-scroll">
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="image/ichysm2026.png" alt="ICHSYSM 2026">
+                    </div>
+                    <div class="card-content">
+                        <h3>ICHSYSM 2026</h3>
+                        <span class="card-date">May 28–29, 2026</span>
+                        <p><strong>2nd International Conference on Health Sciences, Yoga, Sports and Management</strong></p>
+                        <!-- <p style="font-size: 0.9rem; margin-bottom: 10px;">A conscious and respectful synthesis honouring traditional yoga lineages while rigorously engaging with contemporary science and pressing global challenges (UN SDGs).</p> -->
+                        <!-- <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;"><strong>Venue:</strong> Shree Bhakta Hanuman Indian Kovil, Ramboda Tawalantenne, Sri Lanka</p> -->
+                        <a href="https://ichsysm2026.melangeconferences.com" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conferences 2026 -->
+        <section class="conference-section">
+            <h2 class="section-title">Conferences 2026</h2>
+            <div class="conference-scroll">
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="image/icmbnt2026.jpg" alt="ICMBNT 2026">
+                    </div>
+                    <div class="card-content">
+                        <h3>ICMBNT 2026</h3>
+                        <span class="card-date">2026</span>
+                        <p>International Conference on Multidisciplinary Breakthroughs and NextGen Technologies</p>
+                        <a href="https://icmbnt2026.societycis.org/" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+            </div>    
+        </section>
+
+        <!-- Conferences 2025 -->
+        <section class="conference-section">
+            <h2 class="section-title">Conferences 2025</h2>
+            <div class="conference-scroll">
+               <div class="conference-card">
+                    <div class="card-image">
+                        <img src="image/ictyvss.jpg" alt="ICMBNT 2025">
+                    </div>
+                    <div class="card-content">
+                        <h3>ICTYVSS 2025</h3>
+                        <span class="card-date">2025</span>
+                        <p>International Conference on Traditional Systems of Healing Bridging Yoga, Varma & Modern Science (ICTYVM–2025)</p>
+                        <a href="http://ictyvm.melangeconferences.com/" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="image/icmbnt.jpg" alt="ICMBNT 2025">
+                    </div>
+                    <div class="card-content">
+                        <h3>ICMBNT 2025</h3>
+                        <span class="card-date">2025</span>
+                        <p>International Conference on Multidisciplinary Breakthroughs and NextGen Technologies</p>
+                        <a href="https://societycisicmbnt2025.vercel.app/" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+            </div>    
+        </section>
+
+        <!-- Conferences 2023 -->
+        <section class="conference-section">
+            <h2 class="section-title">Conferences 2023</h2>
+            <div class="conference-scroll">
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="image/NCBET.jpg" alt="NCBET 2023">
+                    </div>
+                    <div class="card-content">
+                        <h3>NCBET 2023</h3>
+                        <span class="card-date">2023</span>
+                        <p>National Conference on Biomedical Engineering and Technology</p>
+                        <a href="https://www.srmist.edu.in/events/national-conference-on-biomedical-engineering-and-technology-ncbet/" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="image/ICARICT.jpg" alt="ICARICT 2023">
+                    </div>
+                    <div class="card-content">
+                        <h3>ICARICT 2023</h3>
+                        <span class="card-date">2023</span>
+                        <p>International Conference on Advance Research in Information and Communication Technology</p>
+                        <a href="http://icarict.melangeconferences.com/" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="image/INCETAIBCT.PNG" alt="INCETAIBCT 2023">
+                    </div>
+                    <div class="card-content">
+                        <h3>INCETAIBCT 2023</h3>
+                        <span class="card-date">2023</span>
+                        <p>International Conference on Emerging Trends in Artificial Intelligence and Block Chain Technology</p>
+                        <a href="https://melangeconferences.com/INCETAIBCT'23_Proceeding Final.pdf" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Past Conferences -->
+        <section class="conference-section">
+            <h2 class="section-title">Past Conferences</h2>
+            <div class="conference-scroll" id="past-scroll">
+
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="https://melangeconferences.com/image/.jpg" alt="CSHM 2022">
+                    </div>
+                    <div class="card-content">
+                        <h3>CSHM 2022</h3>
+                        <span class="card-date">2022</span>
+                        <p>Conference on Social Science, Humanities and Management</p>
+                        <a href="http://cshm.melangeconferences.com/" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="https://melangeconferences.com/image/.jpg" alt="WCRS 2020">
+                    </div>
+                    <div class="card-content">
+                        <h3>WCRS 2020</h3>
+                        <span class="card-date">2020</span>
+                        <p>Web Conference On Research Studies</p>
+                        <a href="wcrs/index.php" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="https://melangeconferences.com/image/.jpg" alt="WCITM 2020">
+                    </div>
+                    <div class="card-content">
+                        <h3>WCITM 2020</h3>
+                        <span class="card-date">2020</span>
+                        <p>Web Conference on Information Technology and Management</p>
+                        <a href="wcitm/index.php" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="https://melangeconferences.com/image/.jpg" alt="WCMMSR 2020">
+                    </div>
+                    <div class="card-content">
+                        <h3>WCMMSR 2020</h3>
+                        <span class="card-date">2020</span>
+                        <p>Web conference on Medicine and Medical Science Research</p>
+                        <a href="wcmmsr/index.php" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="https://melangeconferences.com/image/.jpg" alt="ICISTS 2020">
+                    </div>
+                    <div class="card-content">
+                        <h3>ICISTS 2020</h3>
+                        <span class="card-date">2020</span>
+                        <p>International Conference on Information Systems, Technologies and Security</p>
+                        <a href="icists/index.php" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="https://melangeconferences.com/image/.jpg" alt="ICIREA 2019">
+                    </div>
+                    <div class="card-content">
+                        <h3>ICIREA 2019</h3>
+                        <span class="card-date">October 2019</span>
+                        <p>International Conference on Industrial Revolution 4.0 and Engineering Applications</p>
+                        <a href="http://icirea.com/" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="conference-card">
+                    <div class="card-image">
+                        <img src="https://melangeconferences.com/image/.jpg" alt="ICAST 2019">
+                    </div>
+                    <div class="card-content">
+                        <h3>ICAST 2019</h3>
+                        <span class="card-date">April 2019</span>
+                        <p>5th International Conference on Applied Science and Technology</p>
+                        <a href="http://icast-uum.com/" target="_blank" class="card-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-nav">
+                <div class="nav-btn left" data-target="past-scroll">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="nav-btn right" data-target="past-scroll">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Melange Conferences brings together researchers, academics, and professionals to share knowledge and foster collaboration across various disciplines.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="conferences.html">Conferences</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-envelope"></i> info@melangeconferences.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8903539101</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2020 Melange Conferences. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation for conference cards
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.conference-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Navigation buttons functionality
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const scrollContainer = document.getElementById(targetId);
+                    const scrollAmount = 350;
+                    
+                    if (this.classList.contains('left')) {
+                        scrollContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    } else {
+                        scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Keyboard navigation for conference sections
+            document.addEventListener('keydown', function(e) {
+                const focusedSection = document.querySelector('.conference-scroll:focus-within');
+                if (!focusedSection) return;
+                
+                if (e.key === 'ArrowLeft') {
+                    focusedSection.scrollBy({ left: -350, behavior: 'smooth' });
+                } else if (e.key === 'ArrowRight') {
+                    focusedSection.scrollBy({ left: 350, behavior: 'smooth' });
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+  // Create popup container
+  const popup = document.createElement("div");
+  popup.classList.add("image-popup");
+  popup.innerHTML = '<img src="" alt="Full Image">';
+  document.body.appendChild(popup);
+
+  const popupImg = popup.querySelector("img");
+
+  // Click image to open popup
+  document.querySelectorAll(".card-image img").forEach(img => {
+    img.addEventListener("click", () => {
+      const fullSrc = img.getAttribute("data-full") || img.src;
+      popupImg.src = fullSrc;
+      popup.classList.add("active");
+    });
+  });
+
+  // Close on click anywhere
+  popup.addEventListener("click", () => {
+    popup.classList.remove("active");
+    popupImg.src = "";
+  });
+});
+    </script>
+</body>
+</html>

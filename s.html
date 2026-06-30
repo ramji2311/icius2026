@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mélange Publications - Research & Education Content Development</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a365d',
+                        secondary: '#2c5282',
+                        accent: '#d69e2e',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+    
+        .conference-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #1a365d;
+        }
+        .conference-item:hover {
+            transform: translateX(5px);
+        }
+        .year-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #d69e2e;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.875rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <div id="header"></div>
+
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"></div>
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">Conference Proceedings</h2>
+            <p class="text-xl max-w-2xl mx-auto">
+                Access proceedings from our international conferences on engineering, technology, health sciences, and multidisciplinary research.
+            </p>
+        </div>
+    </div>
+    </section>
+
+    <!-- Conferences Section -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="space-y-12">
+            <!-- ICMBNT 2026 Conference Item -->
+            <div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+                <span class="year-badge">2026</span>
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="lg:w-1/4">
+                        <img src="img/icmbnt2026.jpg" alt="ICMBNT 2026" class="w-70 h-80 object-cover rounded-lg">
+                    </div>
+                    <div class="lg:w-2/3">
+                        <h3 class="text-2xl font-bold mb-2">International Conference on Multidisciplinary Breakthroughs</h3>
+                        <p class="text-gray-600 mb-4">and NextGen Technologies (ICMBNT - 2026)</p>
+                        <div class="mb-4">
+                            <p class="text-sm"><strong>Organizer:</strong> Melange Publications, Puducherry - India</p>
+                            <p class="text-sm"><strong>Date:</strong> 2026</p>
+                        </div>
+                        <p class="mb-4 text-gray-700">
+                            The International Conference on Multidisciplinary Breakthroughs and NextGen Technologies (ICMBNT-2026) brings together researchers, engineers, and innovators to showcase cutting-edge research and technological advancements that bridge multiple disciplines. This conference provides a platform for presenting significant research findings and fostering collaboration across academia and industry.
+                        </p>
+                        <a href="/img/ICMBNT2026_Proceeding.pdf" target="_blank" class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                            <i class="fas fa-download mr-2"></i> Download Proceedings
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conference Item 1 -->
+            <div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+                <span class="year-badge">2025</span>
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="lg:w-1/4">
+                        <img src="images/ictyvss.jpg" alt="ICtyvss 2025" class="w-70 h-80 object-cover rounded-lg">
+                    </div>
+                    <div class="lg:w-2/3">
+                        <h3 class="text-2xl font-bold mb-2">International Conference on Traditional Systems of Healing</h3>
+                        <p class="text-gray-600 mb-4">Bridging Yoga, Varma & Sports Science (ICTYVSS–2025)</p>
+                        <div class="mb-4">
+                            <p class="text-sm"><strong>Organizer:</strong> Melange Publications, Puducherry - India</p>
+                            <p class="text-sm"><strong>Date:</strong> 15th Aug, 2025</p>
+                        </div>
+                        <p class="mb-4 text-gray-700">
+                            The International Conference on Traditional Systems of Healing: Bridging Yoga, Varma & Sports Science (ICTYVSS–2025) aims to integrate ancient wisdom with modern scientific research. This conference will bring together experts, practitioners, and researchers to explore holistic approaches to wellness, innovative therapies, and the convergence of traditional healing with sports science and modern healthcare.
+                        </p>
+                        <a href="img/ICTYVSS25 Proceedings.pdf" target="_blank" class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                            <i class="fas fa-download mr-2"></i> Download Proceedings
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conference Item 2 -->
+            <div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+                <span class="year-badge">2025</span>
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="lg:w-1/4">
+                        <img src="img/icmbnt.jpg" alt="ICMBNT 2025" class="w-70 h-80 object-cover rounded-lg">
+                    </div>
+                    <div class="lg:w-2/3">
+                        <h3 class="text-2xl font-bold mb-2">International Conference on Multidisciplinary Breakthroughs</h3>
+                        <p class="text-gray-600 mb-4">and NextGen Technologies (ICMBNT - 2025)</p>
+                        <div class="mb-4">
+                            <p class="text-sm"><strong>Organizer:</strong> Society for Cyber Intelligent Systems, Puducherry - India</p>
+                            <p class="text-sm"><strong>Date:</strong> 26th Apr, 2025</p>
+                        </div>
+                        <p class="mb-4 text-gray-700">
+                            The International Conference on Multidisciplinary Breakthroughs and NextGen Technologies (ICMBNT - 2025) brings together innovative thinkers and domain experts across science, engineering, and technology. This conference explores cross-disciplinary research and transformative applications in AI, nano technology, cloud computing, healthcare innovation, and smart systems.
+                        </p>
+                        <a href="img/ICMBNT-25.pdf" target="_blank" class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                            <i class="fas fa-download mr-2"></i> Download Proceedings
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conference Item 3 -->
+            <div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+                <span class="year-badge">2024</span>
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="lg:w-1/4">
+                        <img src="img/SRM.PNG" alt="Sport 2024 Poster" class="w-70 h-80 object-cover rounded-lg">
+                    </div>
+                    <div class="lg:w-2/3">
+                        <h3 class="text-2xl font-bold mb-2">2nd International Conference on Innovations In Physical Education, Sports & Yogic Sciences</h3>
+                        <p class="text-gray-600 mb-4">With Leading Edge Technologies - 2024</p>
+                        <div class="mb-4">
+                            <p class="text-sm"><strong>Organizer:</strong> SRM Institute Of Science And Technology Tamilnadu - India</p>
+                            <p class="text-sm"><strong>Date:</strong> 10th November, 2024</p>
+                        </div>
+                        <p class="mb-4 text-gray-700">
+                            We are pleased to present the proceedings of ICIPESYSLT - 2024, the Innovations In Physical Education, Sports & Yogic Sciences With Leading Edge Technologies...
+                        </p>
+                        <a href="img/Sports conference_Proceeding FINAL 26.3.2025.pdf" target="_blank" class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                            <i class="fas fa-download mr-2"></i> Download Proceedings
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conference Item 4 -->
+            <div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+                <span class="year-badge">2023</span>
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="lg:w-1/4">
+                        <img src="img/null.jpg" alt="INCETAIBCT 2023 Poster" class="w-70 h-80 object-cover rounded-lg">
+                    </div>
+                    <div class="lg:w-2/3">
+                        <h3 class="text-2xl font-bold mb-2">International Conference On Emerging Trends In Artificial Intelligence And Block Chain Technology</h3>
+                        <div class="mb-4">
+                            <p class="text-sm"><strong>Organizer:</strong> Surya Group Of Institutions, Tamilnadu - India</p>
+                            <p class="text-sm"><strong>Date:</strong> 28th April, 2023</p>
+                        </div>
+                        <p class="mb-4 text-gray-700">
+                            We are pleased to present the proceedings of INCETAIBCT-2023, the International Conference on Emerging Trends in Artificial Intelligence and Blockchain Technology...
+                        </p>
+                        <a href="img/INCETAIBCT'23.pdf" target="_blank" class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                            <i class="fas fa-download mr-2"></i> Download Proceedings
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conference Item 5 -->
+            <div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+                <span class="year-badge">2023</span>
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="lg:w-1/4">
+                        <img src="img/NCBET.jpg" alt="NCBET 2023 Poster" class="w-70 h-80 object-cover rounded-lg">
+                    </div>
+                    <div class="lg:w-2/3">
+                        <h3 class="text-2xl font-bold mb-2">National Conference On Biomedical Engineering And Technology (NCBET-2023)</h3>
+                        <div class="mb-4">
+                            <p class="text-sm"><strong>Organizer:</strong> SRM Institute of Science and Technology, TamilNadu</p>
+                            <p class="text-sm"><strong>Date:</strong> 21th April, 2023</p>
+                        </div>
+                        <p class="mb-4 text-gray-700">
+                            We are pleased to present the proceedings of NCBET-2023, the National Conference On Biomedical Engineering And Technology...
+                        </p>
+                        <a href="img/NCBET23 Proceeding uptd.pdf" target="_blank" class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                            <i class="fas fa-download mr-2"></i> Download Proceedings
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conference Item 6-->
+<div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+    <span class="year-badge">2023</span>
+    <div class="flex flex-col lg:flex-row gap-6">
+        <div class="lg:w-1/4">
+            <img src="img/ICARICT.jpg" alt="ICARICT 2023 Poster" class="w-70 h-80 object-cover rounded-lg">
+        </div>
+        <div class="lg:w-2/3">
+            <h3 class="text-2xl font-bold mb-2">
+                International Conference on Advance Research In Information and Communication Technology (ICARICT - 2023)
+            </h3>
+            <div class="mb-4">
+                <p class="text-sm"><strong>Organizer:</strong> Department of Information and Communication Technology, CSI College of Engineering, Ketti Valley, Nilgiris, Ooty, Tamilnadu - India</p>
+                <p class="text-sm"><strong>Date:</strong> 2nd March, 2023</p>
+            </div>
+            <p class="mb-4 text-gray-700">
+                We are pleased to present the proceedings of ICARICT-2023, the International Conference on Advance Research In Information and Communication Technology...
+            </p>
+            <a href="img/ICARICT_2023 Proceeding (8.8.2023).pdf" target="_blank" 
+               class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                <i class="fas fa-download mr-2"></i> Download Proceedings
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Conference Item -->
+<div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+    <span class="year-badge">2018</span>
+    <div class="flex flex-col lg:flex-row gap-6">
+        <div class="lg:w-1/4">
+            <img src="img/ICFISA.jpg" alt="ICFISA 2018 Poster" class="w-70 h-80 object-cover rounded-lg">
+        </div>
+        <div class="lg:w-2/3">
+            <h3 class="text-2xl font-bold mb-2">
+                International Conference On Future Internet Systems And Applications (ICFISA - 2018)
+            </h3>
+            <div class="mb-4">
+                <p class="text-sm"><strong>Organizer:</strong> Internet Systems And Applications, Melange Publications, Puducherry, India</p>
+                <p class="text-sm"><strong>Date:</strong> 2nd March, 2018</p>
+            </div>
+            <p class="mb-4 text-gray-700">
+                We are pleased to present the proceedings of ICFISA-2018, the International Conference On Future Internet Systems And Applications...
+            </p>
+            <a href="img/ICFISA-18_Proceeding FINAL (1).pdf" target="_blank" 
+               class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                <i class="fas fa-download mr-2"></i> Download Proceedings
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Conference Item -->
+<div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+    <span class="year-badge">2018</span>
+    <div class="flex flex-col lg:flex-row gap-6">
+        <div class="lg:w-1/4">
+            <img src="img/icaresm.jpg" alt="ICARESM 2018 Poster" class="w-70 h-80 object-cover rounded-lg">
+        </div>
+        <div class="lg:w-2/3">
+            <h3 class="text-2xl font-bold mb-2">
+                International Conference on Advanced Research in Engineering Science & Management (ICARESM-2018)
+            </h3>
+            <div class="mb-4">
+                <p class="text-sm"><strong>Organizer:</strong> Melange Publications, Puducherry, India</p>
+                <p class="text-sm"><strong>Date:</strong> 27th April, 2018</p>
+            </div>
+            <p class="mb-4 text-gray-700">
+                We are pleased to present the proceedings of ICARESM-2018, the International Conference on Advanced Research in Engineering Science & Management...
+            </p>
+            <a href="img/ICARESM-2018_proceeding.pdf" target="_blank" 
+               class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                <i class="fas fa-download mr-2"></i> Download Proceedings
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Conference Item -->
+<div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+    <span class="year-badge">2018</span>
+    <div class="flex flex-col lg:flex-row gap-6">
+        <div class="lg:w-1/4">
+            <img src="img/ICMREST.jpg" alt="ICMREST 2018 Poster" class="w-70 h-80 object-cover rounded-lg">
+        </div>
+        <div class="lg:w-2/3">
+            <h3 class="text-2xl font-bold mb-2">
+                International Conference on Modern Research in Engineering Science & Technology (ICMREST-2018)
+            </h3>
+            <div class="mb-4">
+                <p class="text-sm"><strong>Organizer:</strong> V.R.S. College Of Engineering & Technology, Arasur, Villupuram Dist., Tamil Nadu, India</p>
+                <p class="text-sm"><strong>Date:</strong> 7th April, 2018</p>
+            </div>
+            <p class="mb-4 text-gray-700">
+                We are pleased to present the proceedings of ICMREST-2018, the International Conference on Modern Research in Engineering Science & Technology...
+            </p>
+            <a href="img/ICMREST-2018_proceeding.docx" target="_blank" 
+               class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                <i class="fas fa-download mr-2"></i> Download Proceedings
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Conference Item -->
+<div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+    <span class="year-badge">2018</span>
+    <div class="flex flex-col lg:flex-row gap-6">
+        <div class="lg:w-1/4">
+            <img src="img/icrdest.jpg" alt="ICRDEST 2018 Poster" class="w-70 h-80 object-cover rounded-lg">
+        </div>
+        <div class="lg:w-2/3">
+            <h3 class="text-2xl font-bold mb-2">
+                International Conference on Research Development in Engineering Science & Technology (ICRDEST-2018)
+            </h3>
+            <div class="mb-4">
+                <p class="text-sm"><strong>Organizer:</strong> Department of Computer Science & Engineering, SRM Institute of Science and Technology, Kattankulathur Campus, Chennai, Tamilnadu, India</p>
+                <p class="text-sm"><strong>Date:</strong> 20th February, 2018</p>
+            </div>
+            <p class="mb-4 text-gray-700">
+                We are pleased to present the proceedings of ICRDEST-2018, the International Conference on Research Development in Engineering Science & Technology...
+            </p>
+            <a href="img/ICRDEST-2018_proceeding.pdf" target="_blank" 
+               class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                <i class="fas fa-download mr-2"></i> Download Proceedings
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Conference Item -->
+<div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+    <span class="year-badge">2017</span>
+    <div class="flex flex-col lg:flex-row gap-6">
+        <div class="lg:w-1/4">
+            <img src="img/ICRTC.jpg" alt="ICRTC 2017 Poster" class="w-70 h-80 object-cover rounded-lg">
+        </div>
+        <div class="lg:w-2/3">
+            <h3 class="text-2xl font-bold mb-2">
+                International Conference on Recent Trends in Computing (ICRTC - 2017)
+            </h3>
+            <div class="mb-4">
+                <p class="text-sm"><strong>Organizer:</strong> Department of Computer Science & Engineering, SRM Institute of Science and Technology, Delhi NCR Campus, Ghaziabad, Uttar Pradesh, India</p>
+                <p class="text-sm"><strong>Date:</strong> 15th December, 2017</p>
+            </div>
+            <p class="mb-4 text-gray-700">
+                We are pleased to present the proceedings of ICRTC-2017, the International Conference on Recent Trends in Computing...
+            </p>
+            <a href="img/ICRTC-2017 Proceeding .pdf" target="_blank" 
+               class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                <i class="fas fa-download mr-2"></i> Download Proceedings
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Conference Item -->
+<div class="conference-item bg-white rounded-lg shadow-md p-6 relative">
+    <span class="year-badge">2017</span>
+    <div class="flex flex-col lg:flex-row gap-6">
+        <div class="lg:w-1/4">
+            <img src="img/cd.jpg" alt="ICEIET 2017 Poster" class="w-70 h-80 object-cover rounded-lg">
+        </div>
+        <div class="lg:w-2/3">
+            <h3 class="text-2xl font-bold mb-2">
+                International Conference on Emerging Innovation in Engineering and Technology (ICEIET - 2017)
+            </h3>
+            <div class="mb-4">
+                <p class="text-sm"><strong>Organizer:</strong> Christ Institute of Technology, Puducherry</p>
+                <p class="text-sm"><strong>Date:</strong> 25th March, 2017</p>
+            </div>
+            <p class="mb-4 text-gray-700">
+                We are pleased to present the proceedings of ICEIET-2017, the International Conference on Emerging Innovation in Engineering and Technology...
+            </p>
+            <a href="img/CD Proceeding.pdf" target="_blank" 
+               class="inline-flex items-center px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                <i class="fas fa-download mr-2"></i> Download Proceedings
+            </a>
+        </div>
+    </div>
+</div>
+
+            
+        </div>
+    </main>
+
+<!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+        // Load header and footer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load header
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header').innerHTML = data;
+                    initHeaderScripts(); // Initialize header scripts after loading
+                });
+            
+            // Load footer
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                });
+        });
+
+        // Initialize header functionality
+        function initHeaderScripts() {
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Accordion functionality for mobile
+            const accordionButtons = document.querySelectorAll('.accordion > button');
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle content
+                    content.classList.toggle('hidden');
+                    
+                    // Rotate icon
+                    if (content.classList.contains('hidden')) {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    } else {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                });
+            });
+
+            // Add smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+    </script>
+</body>
+</html>

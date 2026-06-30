@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="#F5A051" opacity="0.2" stroke="#F5A051" stroke-width="2"/>
+  
+  <!-- Main circle -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="#F5A051" stroke-width="3"/>
+  
+  <!-- Inner circle -->
+  <circle cx="50" cy="50" r="35" fill="none" stroke="#1e3a8a" stroke-width="2"/>
+  
+  <!-- Text background -->
+  <rect x="25" y="40" width="50" height="20" fill="#F5A051" rx="4"/>
+  
+  <!-- Text -->
+  <text x="50" y="54" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">ICIUS</text>
+  
+  <!-- Year -->
+  <text x="50" y="70" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#F5A051" text-anchor="middle">2026</text>
+</svg>

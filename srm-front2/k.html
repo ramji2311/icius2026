@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KL University — Interactive Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --primary: #3EA0D4;
+    --accent: #EA913B;
+    --bg: #E9E9E9;
+    --card: #ffffff;
+    --text: #333333;
+    --muted: #666666;
+    --grid: #DCDCDC;
+    --success: #98B463;
+    --pink: #AE3D44;
+    --shadow: 0 1px 3px rgba(0,0,0,0.1);
+    --radius: 0px;
+    --radius-sm: 0px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky; top: 0; z-index: 999;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--grid);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 62px;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.15rem;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-tabs { display: flex; gap: 4px; }
+  .nav-tab {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500;
+    padding: 7px 18px; border-radius: 8px;
+    border: none; cursor: pointer;
+    background: transparent; color: var(--muted);
+    transition: all .22s;
+  }
+  .nav-tab.active, .nav-tab:hover {
+    background: var(--primary); color: #fff;
+  }
+
+  /* ── PAGES ── */
+  .page { display: none; animation: fadeUp .5s ease both; }
+  .page.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(18px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+  .container { 
+    max-width: 900px; 
+    margin: 2rem auto; 
+    background: var(--card);
+    padding: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    min-height: 100vh;
+  }
+
+  /* ── INFOGRAM COMPONENTS ── */
+  .info-header {
+    background: var(--accent);
+    padding: 40px 20px;
+    text-align: center;
+    color: #fff;
+  }
+  .info-header h1 {
+    font-family: 'Bitter', serif;
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+  }
+  .info-header p {
+    font-size: 18px;
+    opacity: 0.9;
+    font-weight: 300;
+  }
+
+  .info-section-title {
+    background: var(--primary);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .info-section-title h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .info-section-title p {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+
+  .content-padding {
+    padding: 40px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px; padding: 5px 14px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: .5px;
+    margin-bottom: 1.2rem;
+  }
+  .hero-badge::before { content: '⭐'; }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800; line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--accent2); }
+  .hero-sub { font-size: 1rem; opacity: .85; margin-bottom: 1.5rem; }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-pill {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 50px; padding: 5px 14px;
+    font-size: 0.82rem; font-weight: 500;
+  }
+  .hero-naac {
+    position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
+    text-align: center;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.8rem;
+  }
+  .hero-naac .grade {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem; font-weight: 800; color: var(--accent2); line-height: 1;
+  }
+  .hero-naac .label { font-size: 0.75rem; opacity: .8; margin-top: 4px; }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.35rem; font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::before {
+    content: '';
+    display: block; width: 4px; height: 22px;
+    background: var(--primary); border-radius: 2px;
+  }
+
+  /* KPI CARDS REDESIGN */
+  .kpi-grid { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0; 
+    border-top: 1px solid var(--grid);
+    border-bottom: 1px solid var(--grid);
+  }
+  .kpi-card {
+    background: #fff;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid var(--grid);
+    margin: -1px;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  .kpi-card::after { display: none; }
+  .kpi-icon { display: none; }
+  .kpi-value {
+    font-family: 'Bitter', serif;
+    font-size: 36px;
+    font-weight: 800;
+  }
+  .kpi-label {
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .chart-card {
+    background: #fff; border-radius: 0;
+    padding: 30px; box-shadow: none;
+    border: none;
+    border-bottom: 1px solid var(--grid);
+  }
+  .chart-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px; font-weight: 700; margin-bottom: 20px;
+    justify-content: center;
+  }
+  .chart-title .dot {
+    width: 9px; height: 9px; border-radius: 50%; background: var(--primary); flex-shrink: 0;
+  }
+  .chart-wrap { position: relative; height: 240px; }
+
+  /* ── PROGRAMS PAGE ── */
+  .programs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+  .accordion {
+    background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden;
+    border: 1px solid rgba(91,108,255,0.07);
+    grid-column: 1/-1;
+  }
+  .accordion-item { border-bottom: 1px solid var(--grid); }
+  .accordion-item:last-child { border-bottom: none; }
+  .accordion-header {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 1.5rem; cursor: pointer;
+    background: none; border: none; text-align: left;
+    font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+    color: var(--text); transition: background .18s;
+  }
+  .accordion-header:hover { background: rgba(91,108,255,0.04); }
+  .accordion-header .acc-icon {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: var(--primary); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+    transition: transform .3s;
+  }
+  .accordion-header.open .acc-icon { transform: rotate(45deg); background: var(--accent); }
+  .accordion-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .3s;
+    padding: 0 1.5rem;
+  }
+  .accordion-body.open { max-height: 400px; padding: 1rem 1.5rem 1.4rem; }
+  .program-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .program-tag {
+    background: rgba(91,108,255,0.08); color: var(--primary);
+    border-radius: 50px; padding: 5px 14px;
+    font-size: 0.8rem; font-weight: 500; border: 1px solid rgba(91,108,255,0.15);
+    transition: background .18s;
+  }
+  .program-tag:hover { background: var(--primary); color: #fff; }
+
+  /* ── FACILITIES GRID ── */
+  .facilities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+  .facility-card {
+    background: var(--card); border-radius: var(--radius-sm);
+    padding: 1.1rem; box-shadow: var(--shadow);
+    text-align: center; cursor: default;
+    transition: transform .22s, box-shadow .22s;
+    border: 1px solid rgba(91,108,255,0.06);
+  }
+  .facility-card:hover { transform: scale(1.06); box-shadow: var(--shadow-lg); }
+  .facility-icon { font-size: 1.8rem; margin-bottom: .5rem; }
+  .facility-name { font-size: 0.75rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+
+  /* ── PLACEMENTS ── */
+  .placement-charts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+  .recruiters-strip-wrap {
+    background: var(--card); border-radius: var(--radius);
+    padding: 1.4rem 0; overflow: hidden;
+    box-shadow: var(--shadow); border: 1px solid rgba(91,108,255,0.07);
+    margin-bottom: 2.5rem;
+  }
+  .recruiters-strip-title { font-family:'Syne',sans-serif; font-size:.9rem; font-weight:700; text-align:center; margin-bottom:1rem; color:var(--muted); letter-spacing:.5px; text-transform:uppercase; }
+  .recruiters-track-outer { overflow: hidden; }
+  .recruiters-track {
+    display: flex; gap: 1.2rem; align-items: center;
+    animation: scrollTrack 22s linear infinite;
+    width: max-content;
+  }
+  .recruiters-track:hover { animation-play-state: paused; }
+  @keyframes scrollTrack {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .recruiter-chip {
+    background: rgba(91,108,255,0.07); color: var(--primary);
+    border: 1.5px solid rgba(91,108,255,0.18);
+    border-radius: 50px; padding: 8px 20px;
+    font-size: 0.85rem; font-weight: 700; white-space: nowrap;
+    font-family: 'Syne', sans-serif;
+    transition: background .2s;
+  }
+  .recruiter-chip:hover { background: var(--primary); color: #fff; }
+
+  /* ── FEES ── */
+  .fees-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+  .scholarship-ladder {
+    background: var(--card); border-radius: var(--radius);
+    padding: 1.5rem; box-shadow: var(--shadow);
+    border: 1px solid rgba(91,108,255,0.07);
+    grid-column: 1/-1;
+  }
+  .ladder-row {
+    display: flex; align-items: center; gap: 1.2rem;
+    margin-bottom: 1rem; opacity: 0;
+    animation: fadeUp .5s ease both;
+  }
+  .ladder-row:nth-child(1) { animation-delay:.1s; }
+  .ladder-row:nth-child(2) { animation-delay:.25s; }
+  .ladder-row:nth-child(3) { animation-delay:.4s; }
+  .ladder-row:nth-child(4) { animation-delay:.55s; }
+  .ladder-pct-label {
+    font-family: 'Syne', sans-serif; font-size:.85rem; font-weight:700;
+    width: 110px; flex-shrink:0; color: var(--muted);
+  }
+  .ladder-bar-bg { flex: 1; background: var(--bg); border-radius: 50px; height: 38px; overflow:hidden; position:relative; }
+  .ladder-bar-fill {
+    height: 100%; border-radius: 50px;
+    display: flex; align-items: center; padding-left: 1rem;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: .85rem; color:#fff;
+    transition: width 1.2s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ── MISC ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+  .stat-highlight {
+    background: linear-gradient(135deg, var(--primary), #8a97ff);
+    color:#fff; border-radius: var(--radius);
+    padding: 1.8rem; text-align: center; box-shadow: var(--shadow-lg);
+  }
+  .stat-highlight .big { font-family:'Syne',sans-serif; font-size:3rem; font-weight:800; line-height:1; }
+  .stat-highlight .lbl { font-size:.85rem; opacity:.8; margin-top:6px; }
+
+  @media(max-width:768px) {
+    .hero-naac { display:none; }
+    .charts-row, .programs-grid, .placement-charts, .fees-grid, .two-col { grid-template-columns:1fr; }
+    .hero { padding: 2rem 1.5rem; }
+    .nav { padding: 0 1rem; }
+    .nav-tab { padding: 7px 12px; font-size:.78rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">KL <span>Uni</span> Dashboard</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchPage('overview',this)">Overview</button>
+    <button class="nav-tab" onclick="switchPage('programs',this)">Programs</button>
+    <button class="nav-tab" onclick="switchPage('placements',this)">Placements</button>
+    <button class="nav-tab" onclick="switchPage('fees',this)">Fees & Scholarships</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════
+     PAGE 1: OVERVIEW
+════════════════════════════ -->
+<div id="page-overview" class="page active">
+<div class="container">
+
+  <!-- Info Header -->
+  <div class="info-header">
+    <p>University Overview</p>
+    <h1>Koneru Lakshmaiah Education Foundation</h1>
+    <div style="margin-top:15px; font-weight:300;">Vaddeswaram, Guntur, Andhra Pradesh &nbsp;·&nbsp; Est. 1980 &nbsp;·&nbsp; NAAC A++</div>
+  </div>
+
+  <div class="info-section-title">
+    <h2>University Key Statistics</h2>
+    <p>The snapshot of growth and heritage</p>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid" id="kpi-grid"></div>
+
+  <div class="info-section-title" style="background: var(--accent);">
+    <h2>Placement & Package Insights</h2>
+    <p>Visualizing our students' career trajectory</p>
+  </div>
+
+  <div class="content-padding">
+    <!-- Line + Area charts -->
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-title">Avg Package Growth (LPA)</div>
+        <div class="chart-wrap"><canvas id="chartGrowth"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Placement Rate Trend (%)</div>
+        <div class="chart-wrap"><canvas id="chartRate"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Placeholder for Bottom highlights if needed in Infogram style -->
+  <div style="border-top:1px solid var(--grid); padding:60px; text-align:center;">
+    <div style="font-family:'Bitter', serif; font-size:48px; font-weight:800; color:var(--accent);">2,300+</div>
+    <div style="text-transform:uppercase; letter-spacing:2px; font-size:14px; color:var(--muted);">Students Placed in 2023</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ════════════════════════════
+     PAGE 2: PROGRAMS
+════════════════════════════ -->
+<div id="page-programs" class="page">
+<div class="container">
+
+  <div class="programs-grid">
+    <!-- Donut chart -->
+    <div class="chart-card">
+      <div class="chart-title"><div class="dot"></div>Program Distribution (UG)</div>
+      <div class="chart-wrap"><canvas id="chartDonutPrograms"></canvas></div>
+    </div>
+    <!-- Mini stats -->
+    <div class="chart-card" style="display:flex;flex-direction:column;justify-content:center;gap:1rem;">
+      <div class="section-title" style="margin-bottom:0">26 UG Programs</div>
+      <p style="color:var(--muted);font-size:.9rem;line-height:1.6;">KL University offers a rich portfolio of undergraduate programs spanning Computer Science, Engineering, Science, Architecture, Pharmacy, and more — designed to meet the demands of today's industry.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.6rem;">
+        <span style="background:rgba(91,108,255,.1);color:var(--primary);padding:4px 12px;border-radius:50px;font-size:.8rem;font-weight:600;">10 CS Programs</span>
+        <span style="background:rgba(255,107,107,.1);color:var(--accent);padding:4px 12px;border-radius:50px;font-size:.8rem;font-weight:600;">8 Core Engineering</span>
+        <span style="background:rgba(6,214,160,.1);color:var(--success);padding:4px 12px;border-radius:50px;font-size:.8rem;font-weight:600;">8 Other Programs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion -->
+  <div class="section-title">Programs by Category</div>
+  <div class="accordion" id="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcc(this)">
+        💻 Computer Science Programs
+        <span class="acc-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        <div class="program-tags">
+          <span class="program-tag">CSE</span><span class="program-tag">AI & ML</span><span class="program-tag">Data Science</span>
+          <span class="program-tag">Cyber Security</span><span class="program-tag">IoT</span><span class="program-tag">Cloud Computing</span>
+          <span class="program-tag">Blockchain Technology</span><span class="program-tag">Full Stack Development</span>
+          <span class="program-tag">Gaming Technology</span><span class="program-tag">CSBS</span>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcc(this)">
+        ⚙️ Engineering Programs
+        <span class="acc-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        <div class="program-tags">
+          <span class="program-tag">ECE</span><span class="program-tag">EEE</span><span class="program-tag">Mechanical</span>
+          <span class="program-tag">Civil</span><span class="program-tag">Aerospace</span><span class="program-tag">Robotics & Automation</span>
+          <span class="program-tag">Petroleum</span><span class="program-tag">Agricultural</span>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcc(this)">
+        🔬 Science, Architecture & Other
+        <span class="acc-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        <div class="program-tags">
+          <span class="program-tag">B.Sc Computer Science</span><span class="program-tag">B.Sc Data Science</span>
+          <span class="program-tag">B.Arch</span><span class="program-tag">B.Pharm</span>
+          <span class="program-tag">Biotechnology</span><span class="program-tag">Food Technology</span>
+          <span class="program-tag">IT</span><span class="program-tag">ECM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Facilities -->
+  <div class="section-title" style="margin-top:2.5rem">Campus Facilities</div>
+  <div class="facilities-grid" id="facilities-grid"></div>
+
+</div>
+</div>
+
+<!-- ════════════════════════════
+     PAGE 3: PLACEMENTS
+════════════════════════════ -->
+<div id="page-placements" class="page">
+<div class="container">
+
+  <!-- Package bar -->
+  <div class="charts-row" style="margin-bottom:1.5rem">
+    <div class="chart-card full">
+      <div class="chart-title"><div class="dot"></div>Package Distribution 2023 (LPA)</div>
+      <div class="chart-wrap" style="height:200px"><canvas id="chartPackages"></canvas></div>
+    </div>
+  </div>
+
+  <!-- 3 donuts row -->
+  <div class="placement-charts">
+    <div class="chart-card">
+      <div class="chart-title"><div class="dot"></div>Sector Split</div>
+      <div class="chart-wrap"><canvas id="chartSector"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title"><div class="dot" style="background:var(--pink)"></div>Gender Split</div>
+      <div class="chart-wrap"><canvas id="chartGender"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title"><div class="dot" style="background:var(--success)"></div>Students Placed (YoY)</div>
+      <div class="chart-wrap"><canvas id="chartStudentsYoY"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Recruiters strip -->
+  <div class="section-title">Top Recruiters</div>
+  <div class="recruiters-strip-wrap">
+    <div class="recruiters-strip-title">Campus Recruitment Partners</div>
+    <div class="recruiters-track-outer">
+      <div class="recruiters-track" id="recruiters-track"></div>
+    </div>
+  </div>
+
+  <!-- YoY avg package line -->
+  <div class="chart-card full">
+    <div class="chart-title"><div class="dot"></div>3-Year Placement Trend</div>
+    <div class="chart-wrap" style="height:220px"><canvas id="chartTrend3yr"></canvas></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ════════════════════════════
+     PAGE 4: FEES & SCHOLARSHIPS
+════════════════════════════ -->
+<div id="page-fees" class="page">
+<div class="container">
+
+  <div class="fees-grid">
+    <!-- Fee comparison bar -->
+    <div class="chart-card">
+      <div class="chart-title"><div class="dot"></div>Annual Fee Comparison (₹)</div>
+      <div class="chart-wrap"><canvas id="chartFeeBar"></canvas></div>
+    </div>
+    <!-- Stacked UG cost -->
+    <div class="chart-card">
+      <div class="chart-title"><div class="dot" style="background:var(--accent2)"></div>UG Course Cost Breakdown (₹)</div>
+      <div class="chart-wrap"><canvas id="chartFeeStack"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Scholarship horizontal bar -->
+  <div class="chart-card" style="margin-bottom:2rem">
+    <div class="chart-title"><div class="dot" style="background:var(--success)"></div>Scholarship Programs</div>
+    <div class="chart-wrap" style="height:280px"><canvas id="chartScholarships"></canvas></div>
+  </div>
+
+  <!-- Ladder infographic -->
+  <div class="scholarship-ladder">
+    <div class="section-title" style="margin-bottom:1.5rem">Merit Scholarship Eligibility (10+2 Marks)</div>
+    <div id="ladder-rows"></div>
+  </div>
+
+</div>
+</div>
+
+<script>
+/* ─── DATA ─── */
+const kpis = [
+  { icon:'📅', label:'Established', value:'1980', suffix:'', color:'#5B6CFF' },
+  { icon:'🏆', label:'Highest Package', value:58.33, suffix:' LPA', color:'#FF6B6B' },
+  { icon:'📊', label:'Average Package', value:9.1, suffix:' LPA', color:'#5B6CFF' },
+  { icon:'📈', label:'Median Package', value:6.5, suffix:' LPA', color:'#06D6A0' },
+  { icon:'', label:'Placement Rate', value:88.46, suffix:'%', color:'#FF6B9D' },
+  { icon:'🏢', label:'Companies Visited', value:300, suffix:'+', color:'#FFD166' },
+  { icon:'👩‍🎓', label:'Students Placed', value:2300, suffix:'+', color:'#5B6CFF' },
+  { icon:'🏠', label:'Hostel Capacity', value:4000, suffix:' beds', color:'#FF6B6B' },
+];
+
+const facilities = [
+  {icon:'🏗️',name:'Academic Blocks'},{icon:'🔬',name:'Laboratories'},{icon:'🧪',name:'Central Research'},
+  {icon:'⚽',name:'Sports Complex'},{icon:'🎭',name:'Auditoriums'},{icon:'🏥',name:'Medical Center'},
+  {icon:'🍽️',name:'Cafeterias'},{icon:'🏦',name:'Banking & ATM'},{icon:'📮',name:'Post Office'},
+  {icon:'💡',name:'Innovation Hub'},{icon:'🗣️',name:'Language Lab'},{icon:'🖥️',name:'Digital Classrooms'},
+];
+
+const recruiters = ['Amazon','TCS','Wipro','Cognizant','Capgemini','HCL','Infosys','Accenture','IBM','DXC Technology','Virtusa','Tech Mahindra','Mindtree'];
+
+/* ─── UTILS ─── */
+function fmt(n) {
+  if(typeof n === 'string') return n;
+  return Number.isInteger(n) ? n.toLocaleString() : n.toFixed(2);
+}
+
+function countUp(el, target, suffix, duration=1600) {
+  if(typeof target === 'string') { el.textContent = target + suffix; return; }
+  const start = performance.now();
+  const isFloat = !Number.isInteger(target);
+  function step(ts) {
+    const p = Math.min((ts - start)/duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    const val = ease * target;
+    el.textContent = (isFloat ? val.toFixed(2) : Math.round(val)) + suffix;
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ─── PAGE SWITCH ─── */
+let chartsInit = {};
+function switchPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(!chartsInit[id]) { chartsInit[id]=true; initCharts(id); }
+}
+
+/* ─── BUILD KPI GRID ─── */
+(function buildKPIs() {
+  const g = document.getElementById('kpi-grid');
+  kpis.forEach(k => {
+    const d = document.createElement('div');
+    d.className = 'kpi-card';
+    d.style.setProperty('--kpi-color', k.color);
+    d.innerHTML = `<div class="kpi-icon">${k.icon}</div><div class="kpi-value" data-target="${k.value}" data-suffix="${k.suffix}">0</div><div class="kpi-label">${k.label}</div>`;
+    g.appendChild(d);
+  });
+  // Count-up on first page load
+  setTimeout(() => {
+    document.querySelectorAll('.kpi-value').forEach(el => {
+      const t = el.dataset.target;
+      const s = el.dataset.suffix;
+      countUp(el, isNaN(t) ? t : +t, s);
+    });
+    countUp(document.getElementById('kpi-placed'), 2300, '+');
+    countUp(document.getElementById('kpi-companies'), 300, '+');
+  }, 300);
+})();
+
+/* ─── FACILITIES ─── */
+(function buildFacilities() {
+  const g = document.getElementById('facilities-grid');
+  facilities.forEach(f => {
+    g.innerHTML += `<div class="facility-card"><div class="facility-icon">${f.icon}</div><div class="facility-name">${f.name}</div></div>`;
+  });
+})();
+
+/* ─── RECRUITERS ─── */
+(function buildRecruiters() {
+  const track = document.getElementById('recruiters-track');
+  const doubled = [...recruiters, ...recruiters];
+  doubled.forEach(r => {
+    const c = document.createElement('div');
+    c.className = 'recruiter-chip';
+    c.textContent = r;
+    track.appendChild(c);
+  });
+})();
+
+/* ─── ACCORDION ─── */
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.accordion-header').forEach(b => b.classList.remove('open'));
+  if(!isOpen) { body.classList.add('open'); btn.classList.add('open'); }
+}
+
+/* ─── LADDER ─── */
+(function buildLadder() {
+  const steps = [
+    { range:'≥ 90%', waiver:'100%', pct:100, color:'#5B6CFF' },
+    { range:'80 – 89%', waiver:'50%', pct:50, color:'#06D6A0' },
+    { range:'70 – 79%', waiver:'25%', pct:25, color:'#FFD166' },
+    { range:'60 – 69%', waiver:'10%', pct:10, color:'#FF6B6B' },
+  ];
+  const c = document.getElementById('ladder-rows');
+  steps.forEach(s => {
+    c.innerHTML += `
+    <div class="ladder-row">
+      <div class="ladder-pct-label">${s.range}</div>
+      <div class="ladder-bar-bg">
+        <div class="ladder-bar-fill" style="width:0%;background:${s.color};" data-w="${s.pct}">
+          ${s.waiver} Tuition Waiver
+        </div>
+      </div>
+    </div>`;
+  });
+  setTimeout(() => {
+    document.querySelectorAll('.ladder-bar-fill').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 400);
+})();
+
+/* ──────────────────────────────
+   CHART FACTORY
+────────────────────────────── */
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.color = '#7a8099';
+
+function mkGrad(ctx, c1, c2) {
+  if(!ctx) return c1;
+  const g = ctx.createLinearGradient(0,0,0,240);
+  g.addColorStop(0, c1); g.addColorStop(1, c2);
+  return g;
+}
+
+function initCharts(page) {
+  if(page === 'overview') {
+    // Line chart — avg package
+    const g1 = document.getElementById('chartGrowth').getContext('2d');
+    new Chart(g1, {
+      type:'line',
+      data:{
+        labels:['2021','2022','2023'],
+        datasets:[{
+          label:'Avg Package (LPA)',
+          data:[5.6,7,9.1],
+          borderColor:'#5B6CFF', borderWidth:3,
+          pointBackgroundColor:'#5B6CFF', pointRadius:6, pointHoverRadius:9,
+          fill:true,
+          backgroundColor: mkGrad(g1,'rgba(91,108,255,0.25)','rgba(91,108,255,0.01)'),
+          tension:.45
+        }]
+      },
+      options:{ responsive:true,maintainAspectRatio:false, animation:{duration:1400},
+        plugins:{legend:{display:false}},
+        scales:{ x:{grid:{color:'rgba(0,0,0,0.05)'}}, y:{grid:{color:'rgba(0,0,0,0.05)'},min:4,max:11} }
+      }
+    });
+    // Area chart — placement rate
+    const g2 = document.getElementById('chartRate').getContext('2d');
+    new Chart(g2, {
+      type:'line',
+      data:{
+        labels:['2021','2022','2023'],
+        datasets:[{
+          label:'Placement Rate %',
+          data:[83.33,88,88.46],
+          borderColor:'#06D6A0', borderWidth:3,
+          pointBackgroundColor:'#06D6A0', pointRadius:6,
+          fill:true,
+          backgroundColor: mkGrad(g2,'rgba(6,214,160,0.28)','rgba(6,214,160,0.02)'),
+          tension:.45
+        }]
+      },
+      options:{ responsive:true,maintainAspectRatio:false, animation:{duration:1600},
+        plugins:{legend:{display:false}},
+        scales:{ x:{grid:{color:'rgba(0,0,0,0.05)'}}, y:{grid:{color:'rgba(0,0,0,0.05)'},min:78,max:92} }
+      }
+    });
+  }
+
+  if(page === 'programs') {
+    const gd = document.getElementById('chartDonutPrograms').getContext('2d');
+    new Chart(gd, {
+      type:'doughnut',
+      data:{
+        labels:['CS Programs','Core Engineering','Other Programs'],
+        datasets:[{
+          data:[10,8,8],
+          backgroundColor:['#5B6CFF','#FF6B6B','#06D6A0'],
+          borderWidth:0, hoverOffset:10
+        }]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        animation:{ animateRotate:true, duration:1400 },
+        plugins:{
+          legend:{ position:'bottom', labels:{ padding:16, font:{size:12} } }
+        },
+        cutout:'62%'
+      }
+    });
+  }
+
+  if(page === 'placements') {
+    // Package bar
+    const gp = document.getElementById('chartPackages').getContext('2d');
+    new Chart(gp, {
+      type:'bar',
+      data:{
+        labels:['Highest','Average','Median'],
+        datasets:[{
+          data:[58.33,9.1,6.5],
+          backgroundColor:['#5B6CFF','#FF6B6B','#06D6A0'],
+          borderRadius:10, borderSkipped:false
+        }]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false} },
+        scales:{ x:{grid:{display:false}}, y:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{callback:v=>v+' LPA'}} }
+      }
+    });
+    // Sector pie
+    const gs = document.getElementById('chartSector').getContext('2d');
+    new Chart(gs, {
+      type:'pie',
+      data:{
+        labels:['IT/Software','Others'],
+        datasets:[{ data:[85,15], backgroundColor:['#5B6CFF','#E0E4FF'], borderWidth:0, hoverOffset:8 }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false, animation:{duration:1400},
+        plugins:{ legend:{position:'bottom'} }
+      }
+    });
+    // Gender donut
+    const gg = document.getElementById('chartGender').getContext('2d');
+    new Chart(gg, {
+      type:'doughnut',
+      data:{
+        labels:['Male','Female'],
+        datasets:[{ data:[70,30], backgroundColor:['#5B6CFF','#FF6B9D'], borderWidth:0, hoverOffset:8 }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false, animation:{duration:1600,animateRotate:true},
+        plugins:{ legend:{position:'bottom'} }, cutout:'65%'
+      }
+    });
+    // Students YoY column
+    const gy = document.getElementById('chartStudentsYoY').getContext('2d');
+    new Chart(gy, {
+      type:'bar',
+      data:{
+        labels:['2021','2022','2023'],
+        datasets:[{
+          data:[2000,2200,2300],
+          backgroundColor: '#5B6CFF',
+          borderRadius:8, borderSkipped:false
+        }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{ legend:{display:false} },
+        scales:{ x:{grid:{display:false}}, y:{grid:{color:'rgba(0,0,0,0.05)'},min:1800,max:2500} }
+      }
+    });
+    // 3yr trend line
+    const gt = document.getElementById('chartTrend3yr').getContext('2d');
+    new Chart(gt, {
+      type:'line',
+      data:{
+        labels:['2021','2022','2023'],
+        datasets:[
+          {
+            label:'Avg Package (LPA)',
+            data:[5.6,7,9.1],
+            borderColor:'#5B6CFF', borderWidth:2.5, pointBackgroundColor:'#5B6CFF',
+            fill:false, tension:.45, yAxisID:'y'
+          },
+          {
+            label:'Placement Rate (%)',
+            data:[83.33,88,88.46],
+            borderColor:'#06D6A0', borderWidth:2.5, pointBackgroundColor:'#06D6A0',
+            fill:false, tension:.45, yAxisID:'y2', borderDash:[5,4]
+          }
+        ]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{ legend:{ position:'bottom' } },
+        scales:{
+          y:{ position:'left', title:{display:true,text:'LPA'} },
+          y2:{ position:'right', title:{display:true,text:'Rate %'}, min:75,max:95 }
+        }
+      }
+    });
+  }
+
+  if(page === 'fees') {
+    // Fee comparison bar
+    const gf = document.getElementById('chartFeeBar').getContext('2d');
+    new Chart(gf, {
+      type:'bar',
+      data:{
+        labels:['UG Yearly','PG Yearly','Hostel'],
+        datasets:[{
+          data:[280000, 150000, 100000],
+          backgroundColor:['#5B6CFF','#FF6B6B','#FFD166'],
+          borderRadius:8
+        }]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false} },
+        scales:{ y:{ticks:{callback:v=>'₹'+v.toLocaleString()}} }
+      }
+    });
+
+    // Stacked UG cost
+    const gs = document.getElementById('chartFeeStack').getContext('2d');
+    new Chart(gs, {
+      type:'bar',
+      data:{
+        labels:['UG Course Cost Breakdown'],
+        datasets:[
+          { label:'Tuition', data:[1120000], backgroundColor:'#5B6CFF' },
+          { label:'Admission', data:[10000], backgroundColor:'#FF6B6B' },
+          { label:'Caution', data:[10000], backgroundColor:'#FFD166' }
+        ]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        indexAxis:'y',
+        plugins:{ legend:{position:'bottom'} },
+        scales:{ x:{stacked:true, ticks:{callback:v=>'₹'+(v/100000).toFixed(1)+'L'}}, y:{stacked:true} }
+      }
+    });
+
+    // Scholarship horizontal bar
+    const gsc = document.getElementById('chartScholarships').getContext('2d');
+    new Chart(gsc, {
+      type:'bar',
+      data:{
+        labels:['Merit','Sports','Cultural','PG Merit','Teaching Asst.','Govt'],
+        datasets:[{
+          data:[95, 80, 70, 85, 60, 90],
+          backgroundColor:'#06D6A0',
+          borderRadius:5
+        }]
+      },
+      options:{
+        indexAxis:'y',
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false} },
+        scales:{ x:{max:100} }
+      }
+    });
+  }
+}
+
+// Initial load
+window.onload = () => {
+  chartsInit['overview'] = true;
+  initCharts('overview');
+};
+</script>
+</body>
+</html>
