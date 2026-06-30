@@ -44,58 +44,58 @@ const RegistrationCountdown = () => {
   return (
     <div className="relative rounded-2xl overflow-hidden shadow-2xl">
       {/* Gradient Background */}
-      <div className="bg-gray-900 px-8 py-12">
+      <div className="bg-gray-900 px-4 py-8 sm:px-8 sm:py-12">
         {/* Title */}
         <h2 className="text-white text-2xl md:text-3xl font-bold text-center mb-8">
           Time Until Conference
         </h2>
 
         {/* Countdown Boxes */}
-        <div className="flex justify-center items-center gap-4 md:gap-6">
+        <div className="flex justify-center items-center gap-2 sm:gap-4 md:gap-6">
           {/* Days */}
           <div className="flex flex-col items-center">
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-4 md:px-8 md:py-6 min-w-[80px] md:min-w-[100px] shadow-lg">
-              <div className="text-white text-4xl md:text-5xl font-bold text-center">
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 min-w-[64px] sm:min-w-[80px] md:min-w-[100px] shadow-lg">
+              <div className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center">
                 {String(timeRemaining.days).padStart(2, '0')}
               </div>
             </div>
-            <div className="text-white text-xs md:text-sm font-medium mt-2 uppercase tracking-wider">
+            <div className="text-white text-[10px] sm:text-xs md:text-sm font-medium mt-2 uppercase tracking-wider">
               Days
             </div>
           </div>
 
           {/* Hours */}
           <div className="flex flex-col items-center">
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-4 md:px-8 md:py-6 min-w-[80px] md:min-w-[100px] shadow-lg">
-              <div className="text-white text-4xl md:text-5xl font-bold text-center">
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 min-w-[64px] sm:min-w-[80px] md:min-w-[100px] shadow-lg">
+              <div className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center">
                 {String(timeRemaining.hours).padStart(2, '0')}
               </div>
             </div>
-            <div className="text-white text-xs md:text-sm font-medium mt-2 uppercase tracking-wider">
+            <div className="text-white text-[10px] sm:text-xs md:text-sm font-medium mt-2 uppercase tracking-wider">
               Hours
             </div>
           </div>
 
           {/* Minutes */}
           <div className="flex flex-col items-center">
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-4 md:px-8 md:py-6 min-w-[80px] md:min-w-[100px] shadow-lg">
-              <div className="text-white text-4xl md:text-5xl font-bold text-center">
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 min-w-[64px] sm:min-w-[80px] md:min-w-[100px] shadow-lg">
+              <div className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center">
                 {String(timeRemaining.minutes).padStart(2, '0')}
               </div>
             </div>
-            <div className="text-white text-xs md:text-sm font-medium mt-2 uppercase tracking-wider">
+            <div className="text-white text-[10px] sm:text-xs md:text-sm font-medium mt-2 uppercase tracking-wider">
               Minutes
             </div>
           </div>
 
           {/* Seconds */}
           <div className="flex flex-col items-center">
-            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-4 md:px-8 md:py-6 min-w-[80px] md:min-w-[100px] shadow-lg">
-              <div className="text-white text-4xl md:text-5xl font-bold text-center">
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 min-w-[64px] sm:min-w-[80px] md:min-w-[100px] shadow-lg">
+              <div className="text-white text-3xl sm:text-4xl md:text-5xl font-bold text-center">
                 {String(timeRemaining.seconds).padStart(2, '0')}
               </div>
             </div>
-            <div className="text-white text-xs md:text-sm font-medium mt-2 uppercase tracking-wider">
+            <div className="text-white text-[10px] sm:text-xs md:text-sm font-medium mt-2 uppercase tracking-wider">
               Seconds
             </div>
           </div>

@@ -170,7 +170,7 @@ const AuthorRevisionDashboard: React.FC = () => {
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-800 mb-2">Revision Submissions</h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Revision Submissions</h1>
                     <p className="text-gray-600">Respond to editor feedback and resubmit your revised papers</p>
                 </div>
 
@@ -247,7 +247,7 @@ const AuthorRevisionDashboard: React.FC = () => {
                                     </div>
 
                                     {/* Deadline */}
-                                    <div className="grid grid-cols-2 gap-4 mb-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                                         <div>
                                             <p className="text-sm text-gray-600 font-medium">Deadline</p>
                                             <p className="text-lg font-semibold text-gray-800">

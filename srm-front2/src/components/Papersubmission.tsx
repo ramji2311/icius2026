@@ -585,7 +585,7 @@ const PaperSubmission = () => {
                     </div>
                     <div className="ml-3">
                       <p className="text-sm text-blue-800">
-                        <span className="font-bold">Important:</span> Extended Abstract submission deadline is <span className="font-bold text-green-700 underline">30 June 2026</span>. Submit your paper before the deadline!
+                        <span className="font-bold">Important:</span> Extended Abstract submission deadline is <span className="line-through text-red-500 mx-1">30 June 2026</span> <span className="font-bold text-green-700 underline">25 July 2026 (Extended)</span>. Submit your paper before the deadline!
                       </p>
                     </div>
                   </div>

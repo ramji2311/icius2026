@@ -17,6 +17,7 @@ interface RegistrationCategory {
   id: string;
   name: string;
   price: number;
+  currency: 'INR' | 'USD';
   description: string;
 }
 
@@ -38,13 +39,40 @@ const AuthorRegistration: React.FC = () => {
   
   // Registration categories with pricing
   const registrationCategories: RegistrationCategory[] = [
-    { id: 'indian-student', name: 'Indian Student', price: 3000, description: 'For Indian students with valid ID' },
-    { id: 'indian-faculty', name: 'Indian Faculty', price: 4000, description: 'For Indian academic faculty' },
-    { id: 'indian-author', name: 'Indian Author', price: 5000, description: 'For Indian authors' },
-    { id: 'indian-listener', name: 'Indian Listener', price: 2000, description: 'For Indian listeners/attendees' },
-    { id: 'foreign-author', name: 'Foreign Author', price: 200, description: 'For international authors (USD)' },
-    { id: 'foreign-listener', name: 'Foreign Listener', price: 100, description: 'For international listeners (USD)' },
+    {
+      id: 'indian-author',
+      name: 'Indian Author',
+      price: 24000,
+      currency: 'INR',
+      description: 'For Indian authors'
+    },
+    {
+      id: 'indian-listener',
+      name: 'Indian Listener',
+      price: 12000,
+      currency: 'INR',
+      description: 'For Indian listeners/attendees'
+    },
+    {
+      id: 'foreign-author',
+      name: 'Foreign Author',
+      price: 400,
+      currency: 'USD',
+      description: 'For international authors'
+    },
+    {
+      id: 'foreign-listener',
+      name: 'Foreign Listener',
+      price: 200,
+      currency: 'USD',
+      description: 'For international listeners'
+    },
   ];
+
+  const getCategoryCurrencySymbol = () => {
+    const category = registrationCategories.find(cat => cat.id === registrationCategory);
+    return category?.currency === 'USD' ? '$' : '₹';
+  };
 
   useEffect(() => {
     fetchAcceptedPapers();
@@ -110,9 +138,6 @@ const AuthorRegistration: React.FC = () => {
     const basePrice = category.price;
     const paperCount = selectedPapers.size;
     
-    // Apply SCIS member discount if applicable
-    const discount = membershipStatus?.isMember ? 0.1 : 0; // 10% discount for SCIS members
-    
     let total = basePrice;
     
     // Additional charge for multiple papers (if any)
@@ -120,7 +145,7 @@ const AuthorRegistration: React.FC = () => {
       total = basePrice + (paperCount - 1) * (basePrice * 0.5); // 50% for additional papers
     }
     
-    return total - (total * discount);
+    return total;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -171,6 +196,7 @@ const AuthorRegistration: React.FC = () => {
       formData.append('transactionId', transactionId);
       formData.append('registrationCategory', registrationCategory);
       formData.append('amount', calculateTotalAmount().toString());
+      formData.append('currency', registrationCategories.find(cat => cat.id === registrationCategory)?.currency || 'INR');
       formData.append('paperCount', selectedPapers.size.toString());
       formData.append('paymentScreenshot', paymentScreenshot);
       
@@ -247,39 +273,7 @@ const AuthorRegistration: React.FC = () => {
           </p>
         </div>
 
-        {/* SCIS Membership Status */}
-        {membershipStatus && (
-          <div className={`mb-6 border-l-4 p-4 rounded ${membershipStatus.isMember
-            ? 'bg-green-50 border-green-500'
-            : 'bg-yellow-50 border-yellow-500'
-            }`}>
-            <div className="flex">
-              <div className="flex-shrink-0">
-                {membershipStatus.isMember ? (
-                  <CheckCircle className="h-5 w-5 text-green-500" />
-                ) : (
-                  <AlertCircle className="h-5 w-5 text-yellow-500" />
-                )}
-              </div>
-              <div className="ml-3">
-                {membershipStatus.isMember ? (
-                  <>
-                    <p className="text-sm font-bold text-green-800">
-                      SCIS Member - 10% Discount Applied!
-                    </p>
-                    <p className="text-xs text-green-700 mt-1">
-                      Membership ID: <span className="font-mono font-semibold">{membershipStatus.membershipId}</span>
-                    </p>
-                  </>
-                ) : (
-                  <p className="text-sm font-bold text-yellow-800">
-                    Not a SCIS Member - Standard Rates Apply
-                  </p>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
+
 
         {/* Paper Selection */}
         <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
@@ -375,7 +369,7 @@ const AuthorRegistration: React.FC = () => {
               >
                 {registrationCategories.map((category) => (
                   <option key={category.id} value={category.id}>
-                    {category.name} - {category.name.includes('Foreign') ? '$' : '₹'}{category.price}
+                    {category.name} - {category.currency === 'USD' ? '$' : '₹'}{category.price}
                   </option>
                 ))}
               </select>
@@ -471,7 +465,7 @@ const AuthorRegistration: React.FC = () => {
               <div className="flex justify-between">
                 <span className="text-gray-600">Base Registration:</span>
                 <span className="font-medium">
-                  {registrationCategories.find(cat => cat.id === registrationCategory)?.name.includes('Foreign') ? '$' : '₹'}
+                  {getCategoryCurrencySymbol()}
                   {registrationCategories.find(cat => cat.id === registrationCategory)?.price || 0}
                 </span>
               </div>
@@ -480,27 +474,19 @@ const AuthorRegistration: React.FC = () => {
                 <div className="flex justify-between">
                   <span className="text-gray-600">Additional Papers:</span>
                   <span className="font-medium">
-                    {registrationCategories.find(cat => cat.id === registrationCategory)?.name.includes('Foreign') ? '$' : '₹'}
+                    {getCategoryCurrencySymbol()}
                     {(selectedPapers.size - 1) * ((registrationCategories.find(cat => cat.id === registrationCategory)?.price || 0) * 0.5)}
                   </span>
                 </div>
               )}
               
-              {membershipStatus?.isMember && (
-                <div className="flex justify-between text-green-600">
-                  <span>SCIS Member Discount (10%):</span>
-                  <span className="font-medium">
-                    -{registrationCategories.find(cat => cat.id === registrationCategory)?.name.includes('Foreign') ? '$' : '₹'}
-                    {(calculateTotalAmount() * 0.1 / (1 - 0.1)).toFixed(0)}
-                  </span>
-                </div>
-              )}
+
               
               <div className="border-t pt-2 mt-2">
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total Amount:</span>
                   <span className="text-blue-600">
-                    {registrationCategories.find(cat => cat.id === registrationCategory)?.name.includes('Foreign') ? '$' : '₹'}
+                    {getCategoryCurrencySymbol()}
                     {calculateTotalAmount()}
                   </span>
                 </div>
@@ -537,7 +523,7 @@ const AuthorRegistration: React.FC = () => {
             ) : (
               <>
                 <Upload className="mr-2" size={20} />
-                Submit Registration ({registrationCategories.find(cat => cat.id === registrationCategory)?.name.includes('Foreign') ? '$' : '₹'}{calculateTotalAmount()})
+                Submit Registration ({getCategoryCurrencySymbol()}{calculateTotalAmount()})
               </>
             )}
           </button>

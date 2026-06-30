@@ -4,7 +4,12 @@ import { Calendar } from "lucide-react";
 
 const timelineData = [
   {
-    date: "30 June 2026",
+    date: (
+      <span>
+        <span className="line-through opacity-60 mr-2 text-red-500">30 June 2026</span>
+        <span className="text-green-600 font-bold">25 July 2026 (Extended)</span>
+      </span>
+    ),
     title: "Extended Abstract Submission",
     description: "Last date to submit your extended abstracts"
   },
@@ -34,7 +39,23 @@ const Timeline = () => {
   return (
     <div className="flex flex-col items-center w-full py-10 bg-white">
       <h2 className="text-2xl font-bold text-center mb-8 text-[#F5A051]">Important Dates</h2>
-      <div className="relative w-full max-w-2xl">
+
+      {/* Mobile view - simple vertical cards */}
+      <div className="flex flex-col gap-4 w-full max-w-md px-4 md:hidden">
+        {timelineData.map((item, index) => (
+          <div key={index} className="bg-white shadow-md p-4 rounded-lg border-l-4 border-[#F5A051]">
+            <div className="flex items-center text-[#F5A051] font-semibold mb-1">
+              <Calendar className="mr-2 h-4 w-4" />
+              <span className="text-sm">{item.date}</span>
+            </div>
+            <h3 className="text-base font-semibold text-gray-800">{item.title}</h3>
+            <p className="text-gray-600 text-xs mt-1">{item.description}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop view - zigzag timeline */}
+      <div className="relative w-full max-w-2xl hidden md:block">
         {/* Vertical line */}
         <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200"></div>
 

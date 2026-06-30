@@ -8,7 +8,7 @@ const Venue = () => {
     <PageTransition>
       <div className="min-h-screen flex flex-col bg-gray-100 text-gray-900">
 
-        <div className="bg-gradient-to-r from-blue-900 to-[#F5A051] text-white py-16 px-4">
+        <div className="bg-gradient-to-r from-blue-900 to-[#F5A051] text-white py-8 sm:py-16 px-4">
           <div className="container mx-auto max-w-6xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Conference Venue</h1>
             <p className="text-xl md:text-2xl opacity-90 max-w-3xl">
@@ -19,22 +19,22 @@ const Venue = () => {
         </div>
 
         {/* Main Venue Section */}
-        <section className="py-12 bg-white">
+        <section className="py-6 sm:py-12 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-3xl font-bold text-center mb-8 text-[#F5A051]">Conference Location</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div className="grid grid-cols-2 gap-4 md:gap-6 mb-12">
               {/* KPR Venue Image */}
               <div className="relative overflow-hidden rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 group">
                 <img
                   src={VenuePic}
                   alt="KPR Institute - Conference Venue"
-                  className="w-full object-contain p-8 bg-gray-50 h-80 group-hover:scale-105 transition-transform duration-700"
+                  className="w-full object-contain p-2 sm:p-8 bg-gray-50 h-36 sm:h-60 md:h-80 group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent group-hover:opacity-75 transition-opacity duration-300"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform group-hover:-translate-y-2 transition-transform duration-300">
-                  <h3 className="text-2xl font-bold mb-1">KPR Institute of Engineering and Technology</h3>
-                  <p>Coimbatore, Tamil Nadu, India</p>
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 text-white transform group-hover:-translate-y-2 transition-transform duration-300">
+                  <h3 className="text-xs sm:text-lg md:text-2xl font-bold mb-0.5 sm:mb-1">KPR Institute of Engineering and Technology</h3>
+                  <p className="text-[10px] sm:text-xs md:text-sm">Coimbatore, Tamil Nadu, India</p>
                 </div>
               </div>
 
@@ -43,12 +43,12 @@ const Venue = () => {
                 <img
                   src={MadrasHighCourt}
                   alt="Conference Dates - 26-27 November 2026"
-                  className="w-full object-cover h-80 group-hover:scale-105 transition-transform duration-700"
+                  className="w-full object-cover h-36 sm:h-60 md:h-80 group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent group-hover:opacity-75 transition-opacity duration-300"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform group-hover:-translate-y-2 transition-transform duration-300">
-                  <h3 className="text-2xl font-bold mb-1">Conference Dates</h3>
-                  <p>26-27 November 2026</p>
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 text-white transform group-hover:-translate-y-2 transition-transform duration-300">
+                  <h3 className="text-xs sm:text-lg md:text-2xl font-bold mb-0.5 sm:mb-1">Conference Dates</h3>
+                  <p className="text-[10px] sm:text-xs md:text-sm">26-27 November 2026</p>
                 </div>
               </div>
             </div>
@@ -113,7 +113,7 @@ const Venue = () => {
                   <div>
                     <h4 className="text-lg font-semibold text-gray-800 mb-3">Important Dates</h4>
                     <ul className="space-y-3 text-gray-700">
-                      <li><strong>Extended Abstract:</strong> 30 June 2026</li>
+                      <li><strong>Extended Abstract:</strong> <span className="line-through text-red-500 mr-2">30 June 2026</span> <span className="text-green-700 font-semibold">25 July 2026 (Extended)</span></li>
                       <li><strong>Full Paper Submission:</strong> 30 July 2026</li>
                       <li><strong>Acceptance Notification:</strong> 15 August 2026</li>
                       <li><strong>Conference Days:</strong> 26-27 November 2026</li>
@@ -155,7 +155,7 @@ const Venue = () => {
         </section>
 
         {/* Contact Section */}
-        <section className="py-12 bg-gray-50">
+        <section className="py-6 sm:py-12 bg-gray-50">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-3xl font-bold text-center mb-8 text-[#F5A051]">Venue-Related Inquiries</h2>
 

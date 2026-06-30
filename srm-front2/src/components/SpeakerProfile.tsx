@@ -71,7 +71,7 @@ const SpeakerProfile = () => {
         </div>
         
         <main className="container mx-auto py-12 px-4 max-w-6xl">
-          <div className="bg-white p-8 rounded-xl shadow-lg">
+          <div className="bg-white p-4 sm:p-8 rounded-xl shadow-lg">
             <div className="flex flex-col md:flex-row">
               <div className="md:w-1/3 flex justify-center mb-6 md:mb-0">
                 <img

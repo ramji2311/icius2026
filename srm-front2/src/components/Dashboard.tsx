@@ -377,9 +377,9 @@ const Dashboard: React.FC = React.memo(() => {
     <PageTransition>
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex justify-between items-center mb-8 bg-white p-6 rounded-2xl shadow-sm border border-blue-50">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 bg-white p-6 rounded-2xl shadow-sm border border-blue-50">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-2">
                 <Users className="w-8 h-8 text-blue-600" />
                 Author Dashboard
               </h1>
@@ -387,7 +387,7 @@ const Dashboard: React.FC = React.memo(() => {
             </div>
             <button
               onClick={() => navigate('/paper-submission')}
-              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:shadow-lg hover:shadow-blue-200 transition-all flex items-center gap-2 font-bold shadow-md active:scale-95"
+              className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:shadow-lg hover:shadow-blue-200 transition-all flex items-center justify-center gap-2 font-bold shadow-md active:scale-95"
             >
               <Upload className="w-5 h-5 font-bold" />
               Submit Another Paper

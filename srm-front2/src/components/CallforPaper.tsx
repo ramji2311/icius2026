@@ -38,7 +38,7 @@ const CallForPapers = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header Banner */}
-      <div className="relative bg-gradient-to-r from-blue-900 to-[#F5A051] text-white py-20">
+      <div className="relative bg-gradient-to-r from-blue-900 to-[#F5A051] text-white py-10 sm:py-20">
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative z-10 container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">CALL FOR PAPERS</h1>
@@ -50,7 +50,7 @@ const CallForPapers = () => {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-6 sm:py-12">
         {/* Invitation Section */}
         <section className="mb-16">
           <p className="text-lg leading-relaxed mb-8 text-gray-700">
@@ -78,13 +78,18 @@ const CallForPapers = () => {
         <section className="mb-16">
           <div className="flex items-center mb-6">
             <FaCalendarAlt className="text-[#F5A051] text-2xl mr-4" />
-            <h2 className="text-3xl font-bold text-[#F5A051]">IMPORTANT DATES</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#F5A051]">IMPORTANT DATES</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <DateCard
               title="Extended Abstract Submission"
-              date="30 June 2026"
+              date={
+                <span>
+                  <span className="line-through text-red-500 mr-2">30 June 2026</span>
+                  <span className="text-green-600 font-bold italic">25 July 2026 (Extended)</span>
+                </span>
+              }
               isHighlighted={true}
             />
             <DateCard
@@ -106,7 +111,7 @@ const CallForPapers = () => {
         <section className="mb-16">
           <div className="flex items-center mb-6">
             <FaFileAlt className="text-[#F5A051] text-2xl mr-4" />
-            <h2 className="text-3xl font-bold text-[#F5A051]">PAPER SUBMISSION</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#F5A051]">PAPER SUBMISSION</h2>
           </div>
 
           <div className="bg-gray-50 p-6 rounded-lg shadow-sm mb-8">
@@ -134,7 +139,7 @@ const CallForPapers = () => {
         <section className="mb-16">
           <div className="flex items-center mb-6">
             <FaExclamationTriangle className="text-[#F5A051] text-2xl mr-4" />
-            <h2 className="text-3xl font-bold text-[#F5A051]">INSTRUCTION TO AUTHORS</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#F5A051]">INSTRUCTION TO AUTHORS</h2>
           </div>
 
           <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-8">
@@ -170,7 +175,7 @@ const CallForPapers = () => {
               </li>
             </ol>
             <div className="mt-6 py-2 px-4 bg-blue-50 border-l-4 border-[#F5A051] text-gray-700">
-              <p><strong>Extended Abstract Submission Deadline:</strong> 30 June 2026</p>
+              <p><strong>Extended Abstract Submission Deadline:</strong> <span className="line-through text-red-500 mr-2">30 June 2026</span> <span className="text-green-700 font-bold">25 July 2026 (Extended)</span></p>
             </div>
           </div>
         </section>
@@ -178,7 +183,7 @@ const CallForPapers = () => {
         <section className="mb-16">
           <div className="flex items-center mb-6">
             <FaCalendarAlt className="text-[#F5A051] text-2xl mr-4" />
-            <h2 className="text-3xl font-bold text-[#F5A051]">REGISTRATION FEE DETAILS</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#F5A051]">REGISTRATION FEE DETAILS</h2>
           </div>
 
           <div className="overflow-x-auto bg-white rounded-lg shadow-md">
@@ -186,41 +191,34 @@ const CallForPapers = () => {
               {/* Table Header */}
               <thead>
                 <tr className="bg-gradient-to-r from-blue-900 to-blue-800 text-white">
-                  <th className="border border-gray-300 px-4 py-3 text-left font-bold">Registration Category</th>
-                  <th className="border border-gray-300 px-4 py-3 text-right font-bold">Fee</th>
+                  <th className="border border-gray-300 px-4 py-3 text-left font-bold">Category</th>
+                  <th className="border border-gray-300 px-4 py-3 text-left font-bold">Participant Type</th>
+                  <th className="border border-gray-300 px-4 py-3 text-right font-bold">Registration Fee</th>
                 </tr>
               </thead>
               {/* Table Body */}
               <tbody>
                 <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Students (Indian)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-right">
-                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded font-medium">5,850 INR</span>
+                  <td rowSpan={2} className="border border-gray-300 px-4 py-3 text-gray-800 font-bold bg-gray-100">
+                    🇮🇳 Indian Participant
                   </td>
-                </tr>
-                <tr className="bg-white hover:bg-gray-100 transition-colors">
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Faculty/Research Scholars (Indian)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-right">
-                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded font-medium">7,500 INR</span>
-                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Authors</td>
+                  <td className="border border-gray-300 px-4 py-3 text-right font-semibold text-blue-700">₹24,000 (300 USD)</td>
                 </tr>
                 <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Listeners (Indian)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-right">
-                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded font-medium">3,500 INR</span>
-                  </td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Listeners</td>
+                  <td className="border border-gray-300 px-4 py-3 text-right font-semibold text-blue-700">₹12,000 (150 USD)</td>
                 </tr>
                 <tr className="bg-white hover:bg-gray-100 transition-colors">
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Authors (International)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-right">
-                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded font-medium">350 USD</span>
+                  <td rowSpan={2} className="border border-gray-300 px-4 py-3 text-gray-800 font-bold bg-gray-100">
+                    🌍 Foreign Participant
                   </td>
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Authors</td>
+                  <td className="border border-gray-300 px-4 py-3 text-right font-semibold text-blue-700">$400</td>
                 </tr>
-                <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Listeners (International)</td>
-                  <td className="border border-gray-300 px-4 py-3 text-right">
-                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded font-medium">150 USD</span>
-                  </td>
+                <tr className="bg-white hover:bg-gray-100 transition-colors">
+                  <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Listeners</td>
+                  <td className="border border-gray-300 px-4 py-3 text-right font-semibold text-blue-700">$200</td>
                 </tr>
               </tbody>
             </table>
@@ -237,7 +235,7 @@ const CallForPapers = () => {
         <section className="mb-16">
           <div className="flex items-center mb-6">
             <FaFileAlt className="text-[#F5A051] text-2xl mr-4" />
-            <h2 className="text-3xl font-bold text-[#F5A051]">LISTENER REGISTRATION</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#F5A051]">LISTENER REGISTRATION</h2>
           </div>
 
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-[#F5A051] p-6 rounded-lg">
@@ -261,16 +259,16 @@ const CallForPapers = () => {
                 <li>• Refreshments during the conference</li>
               </ul>
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => navigate('/registrations')}
-                className="px-6 py-3 bg-gradient-to-r from-blue-900 to-[#F5A051] text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-900 to-[#F5A051] text-white font-semibold rounded-lg hover:shadow-lg transition-all text-center"
               >
                 Register as Listener
               </button>
               <button
                 onClick={handleSubmissionClick}
-                className="px-6 py-3 bg-white text-[#F5A051] font-semibold rounded-lg border-2 border-[#F5A051] hover:bg-orange-50 transition-all"
+                className="w-full sm:w-auto px-6 py-3 bg-white text-[#F5A051] font-semibold rounded-lg border-2 border-[#F5A051] hover:bg-orange-50 transition-all text-center"
               >
                 Submit Paper as Author
               </button>
@@ -279,31 +277,31 @@ const CallForPapers = () => {
         </section>
 
         {/* Post-Payment Instructions Section */}
-        <section className="mb-16">
-          <div className="flex items-center mb-6">
-            <FaExclamationTriangle className="text-[#F5A051] text-2xl mr-4" />
-            <h2 className="text-3xl font-bold text-[#F5A051]">POST-PAYMENT INSTRUCTIONS</h2>
+        <section className="mb-10 sm:mb-16">
+          <div className="flex items-center mb-4 sm:mb-6">
+            <FaExclamationTriangle className="text-[#F5A051] text-lg sm:text-2xl mr-2 sm:mr-4 shrink-0" />
+            <h2 className="text-base sm:text-xl md:text-3xl font-bold text-[#F5A051]">POST-PAYMENT INSTRUCTIONS</h2>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-red-50 border-2 border-[#F5A051] rounded-lg shadow-xl p-8">
-            <div className="mb-6 text-center">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">Complete These Steps After Payment</h3>
-              <p className="text-gray-700">Follow these important steps to ensure your registration is successfully processed</p>
+          <div className="bg-gradient-to-br from-orange-50 to-red-50 border-2 border-[#F5A051] rounded-lg shadow-xl p-4 sm:p-8">
+            <div className="mb-4 sm:mb-6 text-center">
+              <h3 className="text-base sm:text-2xl font-bold text-gray-800 mb-1 sm:mb-2">Complete These Steps After Payment</h3>
+              <p className="text-xs sm:text-base text-gray-700">Follow these important steps to ensure your registration is successfully processed</p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3 sm:space-y-6">
               {/* Step 1 */}
-              <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-blue-500">
+              <div className="bg-white rounded-lg p-3 sm:p-6 shadow-md border-l-4 border-blue-500">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
+                  <div className="flex-shrink-0 w-7 h-7 sm:w-10 sm:h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-lg mr-3 sm:mr-4">
                     1
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold text-gray-800 mb-2">📸 Take a Screenshot of Payment Confirmation</h4>
-                    <p className="text-gray-700">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">📸 Take a Screenshot of Payment Confirmation</h4>
+                    <p className="text-xs sm:text-base text-gray-700">
                       Once your payment is completed (via PayPal, Bank Transfer, or UPI), <strong>immediately take a screenshot</strong> of the payment confirmation page showing:
                     </p>
-                    <ul className="list-disc ml-6 mt-2 text-gray-700 space-y-1">
+                    <ul className="list-disc ml-4 sm:ml-6 mt-1 sm:mt-2 text-xs sm:text-base text-gray-700 space-y-0.5 sm:space-y-1">
                       <li>Transaction ID / Reference Number</li>
                       <li>Payment amount</li>
                       <li>Payment date and time</li>
@@ -314,18 +312,18 @@ const CallForPapers = () => {
               </div>
 
               {/* Step 2 */}
-              <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-green-500">
+              <div className="bg-white rounded-lg p-3 sm:p-6 shadow-md border-l-4 border-green-500">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
+                  <div className="flex-shrink-0 w-7 h-7 sm:w-10 sm:h-10 bg-green-500 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-lg mr-3 sm:mr-4">
                     2
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold text-gray-800 mb-2">📋 Copy the Transaction ID</h4>
-                    <p className="text-gray-700">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">📋 Copy the Transaction ID</h4>
+                    <p className="text-xs sm:text-base text-gray-700">
                       <strong>Copy the Transaction ID / Reference Number</strong> from your payment confirmation. This is a unique identifier for your payment and is required for registration verification.
                     </p>
-                    <div className="mt-3 p-3 bg-green-50 rounded border border-green-200">
-                      <p className="text-sm text-green-900">
+                    <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-green-50 rounded border border-green-200">
+                      <p className="text-xs sm:text-sm text-green-900">
                         <strong>💡 Tip:</strong> Keep this Transaction ID handy - you'll need to paste it in the registration form in the next step.
                       </p>
                     </div>
@@ -334,19 +332,19 @@ const CallForPapers = () => {
               </div>
 
               {/* Step 3 */}
-              <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-purple-500">
+              <div className="bg-white rounded-lg p-3 sm:p-6 shadow-md border-l-4 border-purple-500">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
+                  <div className="flex-shrink-0 w-7 h-7 sm:w-10 sm:h-10 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-lg mr-3 sm:mr-4">
                     3
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold text-gray-800 mb-2">🔐 Login to the Website</h4>
-                    <p className="text-gray-700 mb-3">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">🔐 Login to the Website</h4>
+                    <p className="text-xs sm:text-base text-gray-700 mb-2 sm:mb-3">
                       Go to the login page and <strong>sign in with your registered account</strong>. If you don't have an account yet, please sign up first.
                     </p>
                     <button
                       onClick={() => navigate('/login')}
-                      className="px-5 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-all shadow-md"
+                      className="px-3 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-all shadow-md"
                     >
                       Go to Login Page →
                     </button>
@@ -355,19 +353,19 @@ const CallForPapers = () => {
               </div>
 
               {/* Step 4 */}
-              <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-orange-500">
+              <div className="bg-white rounded-lg p-3 sm:p-6 shadow-md border-l-4 border-orange-500">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
+                  <div className="flex-shrink-0 w-7 h-7 sm:w-10 sm:h-10 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-lg mr-3 sm:mr-4">
                     4
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold text-gray-800 mb-2">📝 Click on Registration</h4>
-                    <p className="text-gray-700 mb-3">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">📝 Click on Registration</h4>
+                    <p className="text-xs sm:text-base text-gray-700 mb-2 sm:mb-3">
                       After logging in, navigate to the <strong>Registration page</strong> from the menu or click the button below.
                     </p>
                     <button
                       onClick={() => navigate('/registrations')}
-                      className="px-5 py-2 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition-all shadow-md"
+                      className="px-3 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition-all shadow-md"
                     >
                       Go to Registration Page →
                     </button>
@@ -376,17 +374,17 @@ const CallForPapers = () => {
               </div>
 
               {/* Step 5 */}
-              <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-red-500">
+              <div className="bg-white rounded-lg p-3 sm:p-6 shadow-md border-l-4 border-red-500">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
+                  <div className="flex-shrink-0 w-7 h-7 sm:w-10 sm:h-10 bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-lg mr-3 sm:mr-4">
                     5
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold text-gray-800 mb-2">✍️ Paste Transaction ID in the Form</h4>
-                    <p className="text-gray-700">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">✍️ Paste Transaction ID in the Form</h4>
+                    <p className="text-xs sm:text-base text-gray-700">
                       In the registration form, you'll find a field for <strong>"Transaction ID"</strong>. Paste the Transaction ID you copied in Step 2 into this field.
                     </p>
-                    <ul className="list-disc ml-6 mt-2 text-gray-700 space-y-1">
+                    <ul className="list-disc ml-4 sm:ml-6 mt-1 sm:mt-2 text-xs sm:text-base text-gray-700 space-y-0.5 sm:space-y-1">
                       <li>Fill in all other required details in the form</li>
                       <li>Upload your payment screenshot (from Step 1)</li>
                       <li>Double-check all information before submitting</li>
@@ -396,14 +394,14 @@ const CallForPapers = () => {
               </div>
 
               {/* Step 6 */}
-              <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-indigo-500">
+              <div className="bg-white rounded-lg p-3 sm:p-6 shadow-md border-l-4 border-indigo-500">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-10 h-10 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
+                  <div className="flex-shrink-0 w-7 h-7 sm:w-10 sm:h-10 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-lg mr-3 sm:mr-4">
                     6
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold text-gray-800 mb-2">📸 Take Another Screenshot</h4>
-                    <p className="text-gray-700">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">📸 Take Another Screenshot</h4>
+                    <p className="text-xs sm:text-base text-gray-700">
                       After successfully submitting the registration form, <strong>take a screenshot of the confirmation page</strong> for your records. This will serve as proof of your registration submission.
                     </p>
                   </div>
@@ -412,15 +410,15 @@ const CallForPapers = () => {
             </div>
 
             {/* Important Notice */}
-            <div className="mt-8 bg-red-100 border-2 border-red-500 rounded-lg p-6">
+            <div className="mt-4 sm:mt-8 bg-red-100 border-2 border-red-500 rounded-lg p-3 sm:p-6">
               <div className="flex items-start">
-                <FaExclamationTriangle className="text-red-600 text-3xl mr-4 flex-shrink-0 mt-1" />
+                <FaExclamationTriangle className="text-red-600 text-xl sm:text-3xl mr-2 sm:mr-4 flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="text-xl font-bold text-red-800 mb-2 flex items-center">
-                    <FaExclamationTriangle className="mr-3" />
+                  <h4 className="text-sm sm:text-xl font-bold text-red-800 mb-1 sm:mb-2 flex items-center gap-1 sm:gap-3">
+                    <FaExclamationTriangle className="text-base sm:text-xl" />
                     CRITICAL: Complete All Steps
                   </h4>
-                  <p className="text-red-900 font-medium">
+                  <p className="text-xs sm:text-base text-red-900 font-medium">
                     Your payment will NOT be verified and your registration will NOT be processed until you complete ALL the above steps, including pasting the Transaction ID in the registration form. Please ensure you follow each step carefully.
                   </p>
                 </div>
@@ -428,8 +426,8 @@ const CallForPapers = () => {
             </div>
 
             {/* Help Section */}
-            <div className="mt-6 bg-blue-100 border border-blue-300 rounded-lg p-4">
-              <p className="text-blue-900 text-sm">
+            <div className="mt-3 sm:mt-6 bg-blue-100 border border-blue-300 rounded-lg p-3 sm:p-4">
+              <p className="text-blue-900 text-xs sm:text-sm">
                 <strong>Need Help?</strong> If you face any issues during the registration process, please contact us at{' '}
                 <a href="mailto:icius2026@isius.org" className="text-blue-700 underline font-semibold">
                   icius2026@isius.org
@@ -442,8 +440,8 @@ const CallForPapers = () => {
         {/* Payment Methods Section */}
         <section className="mb-16">
           <div className="flex items-center mb-6">
-            <FaCalendarAlt className="text-[#F5A051] text-2xl mr-4" />
-            <h2 className="text-3xl font-bold text-[#F5A051]">PAYMENT METHODS</h2>
+            <FaCreditCard className="text-[#F5A051] text-2xl mr-4" />
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#F5A051]">PAYMENT METHODS</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -485,29 +483,29 @@ const CallForPapers = () => {
                 Pay directly through bank transfer or UPI using the account details below or scan the QR code.
               </p>
               <div className="bg-red-50 p-4 rounded text-sm space-y-2">
-                <div className="flex justify-between border-b border-red-200 pb-2">
+                <div className="flex flex-col sm:flex-row sm:justify-between border-b border-red-200 pb-2 gap-1 sm:gap-4">
                   <p className="font-semibold text-red-900">Bank A/C Name:</p>
-                  <p className="text-red-800 font-medium">MELANGE PUBLICATIONS</p>
+                  <p className="text-red-800 font-medium sm:text-right">MELANGE PUBLICATIONS</p>
                 </div>
-                <div className="flex justify-between border-b border-red-200 pb-2">
+                <div className="flex flex-col sm:flex-row sm:justify-between border-b border-red-200 pb-2 gap-1 sm:gap-4">
                   <p className="font-semibold text-red-900">Account No:</p>
-                  <p className="text-red-800 font-medium">736805000791</p>
+                  <p className="text-red-800 font-medium sm:text-right">736805000791</p>
                 </div>
-                <div className="flex justify-between border-b border-red-200 pb-2">
+                <div className="flex flex-col sm:flex-row sm:justify-between border-b border-red-200 pb-2 gap-1 sm:gap-4">
                   <p className="font-semibold text-red-900">Bank Name:</p>
-                  <p className="text-red-800 font-medium">ICICI BANK</p>
+                  <p className="text-red-800 font-medium sm:text-right">ICICI BANK</p>
                 </div>
-                <div className="flex justify-between border-b border-red-200 pb-2">
+                <div className="flex flex-col sm:flex-row sm:justify-between border-b border-red-200 pb-2 gap-1 sm:gap-4">
                   <p className="font-semibold text-red-900">Branch:</p>
-                  <p className="text-red-800 font-medium">VILLIANUR, PUDUCHERRY</p>
+                  <p className="text-red-800 font-medium sm:text-right">VILLIANUR, PUDUCHERRY</p>
                 </div>
-                <div className="flex justify-between border-b border-red-200 pb-2">
+                <div className="flex flex-col sm:flex-row sm:justify-between border-b border-red-200 pb-2 gap-1 sm:gap-4">
                   <p className="font-semibold text-red-900">IFSC Code:</p>
-                  <p className="text-red-800 font-medium">ICIC0007368</p>
+                  <p className="text-red-800 font-medium sm:text-right">ICIC0007368</p>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
                   <p className="font-semibold text-red-900">SWIFT Code:</p>
-                  <p className="text-red-800 font-medium">ICICINBBCTS</p>
+                  <p className="text-red-800 font-medium sm:text-right">ICICINBBCTS</p>
                 </div>
               </div>
             </div>
@@ -551,7 +549,7 @@ const DateCard: React.FC<DateCardProps> = ({ title, date, isHighlighted = false 
   return (
     <div className={`rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-1 duration-300 ${isHighlighted ? 'border-2 border-[#F5A051]' : 'border border-gray-200'}`}>
       <div className="bg-[#F5A051] text-white p-4">
-        <h3 className="font-bold text-xl">{title}</h3>
+        <h3 className="font-bold text-base md:text-lg lg:text-xl">{title}</h3>
       </div>
       <div className="bg-white p-4">
         <p className="text-gray-800 font-medium">{date}</p>

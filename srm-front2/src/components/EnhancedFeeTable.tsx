@@ -41,7 +41,6 @@ const EnhancedFeeTable: React.FC<FeeTableProps> = ({ userCountry, membershipStat
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 sm:px-6 py-3">
                     <p className="text-sm font-semibold">
                         📍 Showing fees for: <span className="text-yellow-300">{country}</span>
-                        {isMember && <span className="ml-3 bg-green-500 px-2 py-1 rounded text-xs">✓ SCIS Member Discount Applied</span>}
                         {isAccepted && <span className="ml-3 bg-blue-500 px-2 py-1 rounded text-xs">✓ Author Status Verified</span>}
                     </p>
                 </div>
@@ -58,58 +57,25 @@ const EnhancedFeeTable: React.FC<FeeTableProps> = ({ userCountry, membershipStat
                                 Type
                             </th>
                             <th scope="col" className="px-3 sm:px-6 py-3 sm:py-4 text-right text-sm font-bold uppercase tracking-wider">
-                                SCIS Members
+                                Registration Fee
                             </th>
-                            <th scope="col" className="px-3 sm:px-6 py-3 sm:py-4 text-right text-sm font-bold uppercase tracking-wider">
-                                Non-SCIS Members
-                            </th>
-                            {isMember && (
-                                <th scope="col" className="px-3 sm:px-6 py-3 sm:py-4 text-right text-sm font-bold uppercase tracking-wider">
-                                    Your Savings
-                                </th>
-                            )}
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
                         {/* Indian Participant Section */}
                         <tr className={getRowClassName('India')}>
-                            <td rowSpan={isAccepted ? 2 : 3} className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base font-bold text-gray-800 bg-gray-100">
+                            <td rowSpan={isAccepted ? 1 : 2} className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base font-bold text-gray-800 bg-gray-100">
                                 🇮🇳 Indian Participant
                                 {country === 'India' && (
                                     <div className="text-xs font-normal text-blue-600 mt-1">← Your Category</div>
                                 )}
                             </td>
                             <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base font-medium text-gray-800">
-                                Students
+                                Authors
                             </td>
                             <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                <span className="bg-green-100 text-green-800 py-1 px-3 rounded-md">₹4,500 (50 USD)</span>
+                                <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">₹24,000 (300 USD)</span>
                             </td>
-                            <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">₹5,850 (65 USD)</span>
-                            </td>
-                            {isMember && country === 'India' && (
-                                <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-bold text-green-600">
-                                    Save ₹1,350!
-                                </td>
-                            )}
-                        </tr>
-
-                        <tr className={getRowClassName('India')}>
-                            <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base font-medium text-gray-800">
-                                Faculty/Research Scholars
-                            </td>
-                            <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                <span className="bg-green-100 text-green-800 py-1 px-3 rounded-md">₹6,750 (75 USD)</span>
-                            </td>
-                            <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">₹7,500 (85 USD)</span>
-                            </td>
-                            {isMember && country === 'India' && (
-                                <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-bold text-green-600">
-                                    Save ₹750!
-                                </td>
-                            )}
                         </tr>
 
                         {!isAccepted && (
@@ -118,16 +84,8 @@ const EnhancedFeeTable: React.FC<FeeTableProps> = ({ userCountry, membershipStat
                                     Listeners
                                 </td>
                                 <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                    <span className="bg-green-100 text-green-800 py-1 px-3 rounded-md">₹2,500</span>
+                                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">₹12,000 (150 USD)</span>
                                 </td>
-                                <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">₹3,500</span>
-                                </td>
-                                {isMember && country === 'India' && (
-                                    <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-bold text-green-600">
-                                        Save ₹1,000!
-                                    </td>
-                                )}
                             </tr>
                         )}
 
@@ -143,16 +101,8 @@ const EnhancedFeeTable: React.FC<FeeTableProps> = ({ userCountry, membershipStat
                                 Authors
                             </td>
                             <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                <span className="bg-green-100 text-green-800 py-1 px-3 rounded-md">$300</span>
+                                <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">$400</span>
                             </td>
-                            <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">$350</span>
-                            </td>
-                            {isMember && country === 'Other' && (
-                                <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-bold text-green-600">
-                                    Save $50!
-                                </td>
-                            )}
                         </tr>
 
                         {!isAccepted && (
@@ -161,16 +111,8 @@ const EnhancedFeeTable: React.FC<FeeTableProps> = ({ userCountry, membershipStat
                                     Listeners
                                 </td>
                                 <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                    <span className="bg-green-100 text-green-800 py-1 px-3 rounded-md">$100</span>
+                                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">$200</span>
                                 </td>
-                                <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">$150</span>
-                                </td>
-                                {isMember && country === 'Other' && (
-                                    <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-bold text-green-600">
-                                        Save $50!
-                                    </td>
-                                )}
                             </tr>
                         )}
 

@@ -10,6 +10,11 @@ export default defineConfig({
   base: '/',
   server: {
     port: 5173,
-    host: true
+    host: true,
+    allowedHosts: [
+      'commotion-backed-vibes.ngrok-free.dev',
+      '.ngrok-free.dev',
+      '.ngrok.io'
+    ]
   }
 })

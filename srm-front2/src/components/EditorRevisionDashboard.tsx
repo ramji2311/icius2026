@@ -106,7 +106,7 @@ const EditorRevisionDashboard: React.FC = () => {
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-800 mb-2">Review Revised Submissions</h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Review Revised Submissions</h1>
                     <p className="text-gray-600">Review author revisions and make final acceptance/rejection decisions</p>
                 </div>
 
@@ -253,7 +253,7 @@ const EditorRevisionDashboard: React.FC = () => {
                                         <label className="block text-sm font-medium text-gray-700 mb-3">
                                             Final Decision
                                         </label>
-                                        <div className="grid grid-cols-3 gap-3">
+                                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                             <button
                                                 onClick={() => setFinalDecision('accept')}
                                                 className={`px-4 py-3 rounded-lg font-semibold transition border-2 flex items-center justify-center gap-2 ${

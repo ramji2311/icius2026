@@ -11,7 +11,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-linear-gradient-from-red-50 to-gray-50">
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-10 sm:py-20">
         <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center text-[#F5A051]" data-aos="fade-up">
           Contact Us
         </h1>

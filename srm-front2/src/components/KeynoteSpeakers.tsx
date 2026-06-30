@@ -362,7 +362,7 @@ const KeynoteSpeakers = () => {
     <PageTransition>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-blue-50 to-orange-50">
         {/* Header Section */}
-        <header className="bg-gradient-to-r from-blue-900 via-blue-800 to-[#F5A051] text-white py-20 px-4 relative overflow-hidden">
+        <header className="bg-gradient-to-r from-blue-900 via-blue-800 to-[#F5A051] text-white py-10 sm:py-20 px-4 relative overflow-hidden">
           <div className="absolute inset-0 bg-black opacity-10"></div>
           <div className="container mx-auto max-w-6xl relative z-10">
             <div className="flex items-center justify-center mb-6">
@@ -375,7 +375,7 @@ const KeynoteSpeakers = () => {
           </div>
         </header>
 
-        <main className="container mx-auto py-16 px-4">
+        <main className="container mx-auto py-8 sm:py-16 px-4">
           {/* Introduction */}
           <div className="max-w-5xl mx-auto mb-16 text-center">
             <h2 className="text-4xl font-bold text-gray-800 mb-6">Meet Our Featured Speakers</h2>
@@ -462,7 +462,7 @@ const KeynoteSpeakers = () => {
                     {/* Profile Layout */}
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
                       {/* Left Column - Speaker Photo */}
-                      <div className="lg:col-span-3 bg-gradient-to-br from-gray-100 to-gray-200 p-8 flex flex-col items-center justify-start">
+                      <div className="lg:col-span-3 bg-gradient-to-br from-gray-100 to-gray-200 p-6 sm:p-8 flex flex-col items-center justify-start">
                         <img
                           src={speaker.image}
                           alt={speaker.name}
@@ -471,7 +471,7 @@ const KeynoteSpeakers = () => {
                       </div>
 
                       {/* Right Column - Speaker Details */}
-                      <div className="lg:col-span-9 p-8 lg:p-12">
+                      <div className="lg:col-span-9 p-4 sm:p-8 lg:p-12">
                         {/* Header */}
                         <div className="mb-8">
                           <h2 className="text-4xl font-bold text-gray-900 mb-2">

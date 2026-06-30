@@ -527,7 +527,7 @@ const ConferenceCommittee = () => {
   return (
     <PageTransition>
       <div className="min-h-screen bg-gray-50">
-        <header className="bg-gradient-to-r from-blue-900 to-[#F5A051] text-white py-16 px-4 text-center">
+        <header className="bg-gradient-to-r from-blue-900 to-[#F5A051] text-white py-8 sm:py-16 px-4 text-center">
           <div className="container mx-auto max-w-6xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Conference Committee</h1>
             <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
@@ -536,7 +536,7 @@ const ConferenceCommittee = () => {
           </div>
         </header>
 
-        <main className="container mx-auto max-w-6xl px-4 py-12">
+        <main className="container mx-auto max-w-6xl px-4 py-6 sm:py-12">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
             <div className="flex items-center">
               <Users className="w-8 h-8 text-[#F5A051] mr-3" />

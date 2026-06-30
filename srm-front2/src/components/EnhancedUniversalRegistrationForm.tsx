@@ -108,24 +108,24 @@ const EnhancedUniversalRegistrationForm: React.FC = React.memo(() => {
                     {
                         id: 'indian-student',
                         label: 'Indian Student',
-                        price: 5850,
-                        societyDiscountPrice: 4500,
+                        price: 24000,
+                        societyDiscountPrice: 24000,
                         currency: 'INR',
                         description: 'For undergraduate and postgraduate students'
                     },
                     {
                         id: 'indian-faculty',
                         label: 'Indian Faculty',
-                        price: 7500,
-                        societyDiscountPrice: 6750,
+                        price: 24000,
+                        societyDiscountPrice: 24000,
                         currency: 'INR',
                         description: 'For faculty members and professors'
                     },
                     {
                         id: 'indian-scholar',
                         label: 'Indian Research Scholar',
-                        price: 7500,
-                        societyDiscountPrice: 6750,
+                        price: 24000,
+                        societyDiscountPrice: 24000,
                         currency: 'INR',
                         description: 'For research scholars and PhD candidates'
                     }
@@ -134,8 +134,8 @@ const EnhancedUniversalRegistrationForm: React.FC = React.memo(() => {
                 categories.push({
                     id: 'indian-listener',
                     label: 'Indian Listener/Attendee',
-                    price: 3500,
-                    societyDiscountPrice: 2500,
+                    price: 12000,
+                    societyDiscountPrice: 12000,
                     currency: 'INR',
                     description: 'For conference attendees without paper presentation'
                 });
@@ -163,7 +163,8 @@ const EnhancedUniversalRegistrationForm: React.FC = React.memo(() => {
                 categories.push({
                     id: 'foreign-author',
                     label: 'International Author',
-                    price: 350,
+                    price: 400,
+                    societyDiscountPrice: 400,
                     currency: 'USD',
                     description: 'For international authors presenting papers'
                 });
@@ -171,7 +172,8 @@ const EnhancedUniversalRegistrationForm: React.FC = React.memo(() => {
                 categories.push({
                     id: 'foreign-listener',
                     label: 'International Listener/Attendee',
-                    price: 150,
+                    price: 200,
+                    societyDiscountPrice: 200,
                     currency: 'USD',
                     description: 'For international conference attendees'
                 });
