@@ -371,7 +371,7 @@ router.get('/my-registration', verifyJWT, async (req, res) => {
             paymentMethod: reg.paymentMethod,
             transactionId: reg.transactionId,
             amount: reg.amount,
-            currency: reg.currency || 'INR',
+            currency: reg.currency || 'USD',
             paymentStatus: reg.paymentStatus,
             registrationDate: reg.registrationDate,
             verifiedAt: reg.verifiedAt,

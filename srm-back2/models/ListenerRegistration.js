@@ -44,7 +44,7 @@ const listenerRegistrationSchema = new mongoose.Schema({
     },
     currency: {
         type: String,
-        default: 'INR'
+        default: 'USD'
     },
     paymentScreenshot: {
         type: String,

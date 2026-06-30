@@ -84,7 +84,7 @@ const paymentRegistrationSchema = new mongoose.Schema({
     },
     currency: {
         type: String,
-        default: 'INR'
+        default: 'USD'
     },
 
     // Payment Screenshot (Cloudinary URL)

@@ -74,7 +74,7 @@ const EnhancedFeeTable: React.FC<FeeTableProps> = ({ userCountry, membershipStat
                                 Authors
                             </td>
                             <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">₹24,000 (300 USD)</span>
+                                <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">$300</span>
                             </td>
                         </tr>
 
@@ -84,7 +84,7 @@ const EnhancedFeeTable: React.FC<FeeTableProps> = ({ userCountry, membershipStat
                                     Listeners
                                 </td>
                                 <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">₹12,000 (150 USD)</span>
+                                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">$200</span>
                                 </td>
                             </tr>
                         )}
@@ -111,7 +111,7 @@ const EnhancedFeeTable: React.FC<FeeTableProps> = ({ userCountry, membershipStat
                                     Listeners
                                 </td>
                                 <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-base text-right font-semibold text-gray-800">
-                                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">$200</span>
+                                    <span className="bg-blue-100 text-blue-800 py-1 px-3 rounded-md">$250</span>
                                 </td>
                             </tr>
                         )}

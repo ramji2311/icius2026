@@ -49,7 +49,11 @@ const EditorDashboard = React.memo(() => {
         stats, 
         loading, 
         error, 
-        fetchDashboardData 
+        fetchDashboardData,
+        page,
+        setPage,
+        totalPages,
+        totalPapers
     } = useEditorDashboard();
 
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -704,11 +708,32 @@ const EditorDashboard = React.memo(() => {
                     )}
 
                     {activeTab === 'papers' && !viewingPaper && (
-                        <PapersTab
-                            papers={papers}
-                            reviewers={reviewers}
-                            onViewPaper={setViewingPaper}
-                        />
+                        <div className="flex flex-col h-full space-y-4">
+                            <PapersTab
+                                papers={papers}
+                                reviewers={reviewers}
+                                onViewPaper={setViewingPaper}
+                            />
+                            {totalPages > 1 && (
+                                <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm border border-gray-100 mt-4">
+                                    <button
+                                        disabled={page <= 1}
+                                        onClick={() => setPage((p) => Math.max(1, p - 1))}
+                                        className={`px-4 py-2 rounded font-medium ${page <= 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-blue-50 text-blue-600 hover:bg-blue-100'}`}
+                                    >
+                                        Previous
+                                    </button>
+                                    <span className="text-sm text-gray-600">Page {page} of {totalPages} ({totalPapers} total)</span>
+                                    <button
+                                        disabled={page >= totalPages}
+                                        onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                                        className={`px-4 py-2 rounded font-medium ${page >= totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-blue-50 text-blue-600 hover:bg-blue-100'}`}
+                                    >
+                                        Next
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     )}
 
                     {/* Paper Details View - Side by side layout */}

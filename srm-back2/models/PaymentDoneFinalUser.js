@@ -65,7 +65,7 @@ const paymentDoneFinalUserSchema = new mongoose.Schema({
     },
     currency: {
         type: String,
-        default: 'INR'
+        default: 'USD'
     },
 
     // Original Payment Registration Reference

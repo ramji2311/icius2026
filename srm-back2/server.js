@@ -27,7 +27,6 @@ import editorRoutes from './routes/editorRoutes.js';
 import reviewerRoutes from './routes/reviewerRoutes.js';
 import paymentRegistrationRoutes from './routes/paymentRegistration.js';
 import committeeRoutes from './routes/committee.js';
-import keynoteSpeakerRoutes from './routes/keynoteSpeaker.js';
 import membershipRoutes from './routes/membershipRoutes.js';
 import listenerRoutes from './routes/listenerRoutes.js';
 import debugRoutes from './routes/debugRoutes.js';
@@ -190,10 +189,6 @@ app.use((req, res, next) => {
         if (req.path.includes('/committee')) {
             res.setHeader('Cache-Control', 'public, max-age=3600');
         }
-        // Cache keynote speakers for 1 hour
-        else if (req.path.includes('/keynote-speakers')) {
-            res.setHeader('Cache-Control', 'public, max-age=3600');
-        }
         // Cache paper data for 30 minutes
         else if (req.path.includes('/papers') && !req.path.includes('/submit')) {
             res.setHeader('Cache-Control', 'public, max-age=1800');
@@ -292,7 +287,6 @@ app.use('/api/editor', editorRoutes);
 app.use('/api/reviewer', reviewerRoutes);
 app.use('/api/registration', paymentRegistrationRoutes);
 app.use('/api/committee', committeeRoutes);
-app.use('/api/keynote-speakers', keynoteSpeakerRoutes);
 app.use('/api/membership', membershipRoutes);
 app.use('/api/listener', listenerRoutes);
 if (allowDebugEndpoints) {

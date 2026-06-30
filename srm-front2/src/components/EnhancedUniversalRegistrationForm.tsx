@@ -108,25 +108,25 @@ const EnhancedUniversalRegistrationForm: React.FC = React.memo(() => {
                     {
                         id: 'indian-student',
                         label: 'Indian Student',
-                        price: 24000,
-                        societyDiscountPrice: 24000,
-                        currency: 'INR',
+                        price: 300,
+                        societyDiscountPrice: 300,
+                        currency: 'USD',
                         description: 'For undergraduate and postgraduate students'
                     },
                     {
                         id: 'indian-faculty',
                         label: 'Indian Faculty',
-                        price: 24000,
-                        societyDiscountPrice: 24000,
-                        currency: 'INR',
+                        price: 300,
+                        societyDiscountPrice: 300,
+                        currency: 'USD',
                         description: 'For faculty members and professors'
                     },
                     {
                         id: 'indian-scholar',
                         label: 'Indian Research Scholar',
-                        price: 24000,
-                        societyDiscountPrice: 24000,
-                        currency: 'INR',
+                        price: 300,
+                        societyDiscountPrice: 300,
+                        currency: 'USD',
                         description: 'For research scholars and PhD candidates'
                     }
                 );
@@ -134,9 +134,9 @@ const EnhancedUniversalRegistrationForm: React.FC = React.memo(() => {
                 categories.push({
                     id: 'indian-listener',
                     label: 'Indian Listener/Attendee',
-                    price: 12000,
-                    societyDiscountPrice: 12000,
-                    currency: 'INR',
+                    price: 200,
+                    societyDiscountPrice: 200,
+                    currency: 'USD',
                     description: 'For conference attendees without paper presentation'
                 });
             }
@@ -172,8 +172,8 @@ const EnhancedUniversalRegistrationForm: React.FC = React.memo(() => {
                 categories.push({
                     id: 'foreign-listener',
                     label: 'International Listener/Attendee',
-                    price: 200,
-                    societyDiscountPrice: 200,
+                    price: 250,
+                    societyDiscountPrice: 250,
                     currency: 'USD',
                     description: 'For international conference attendees'
                 });
@@ -698,7 +698,7 @@ const EnhancedUniversalRegistrationForm: React.FC = React.memo(() => {
                     <div className="bg-white bg-opacity-50 p-4 rounded mt-4 space-y-2">
                         <p><strong>Name:</strong> {registrationStatus.authorName}</p>
                         {registrationStatus.paperTitle && <p><strong>Paper:</strong> {registrationStatus.paperTitle}</p>}
-                        <p><strong>Amount:</strong> {registrationStatus.amount} {registrationStatus.currency || 'INR'}</p>
+                        <p><strong>Amount:</strong> {registrationStatus.amount} {registrationStatus.currency || 'USD'}</p>
                         <p><strong>Payment Method:</strong> {registrationStatus.paymentMethod}</p>
                         <p><strong>Registration Type:</strong> {registrationStatus.registrationType || 'Author'}</p>
                         <p><strong>Submitted:</strong> {new Date(registrationStatus.registrationDate).toLocaleDateString()}</p>
@@ -757,7 +757,7 @@ const EnhancedUniversalRegistrationForm: React.FC = React.memo(() => {
                     <div className="bg-white bg-opacity-50 p-4 rounded mt-4 space-y-2 mb-4">
                         <p><strong>Name:</strong> {registrationStatus.authorName}</p>
                         {registrationStatus.paperTitle && <p><strong>Paper:</strong> {registrationStatus.paperTitle}</p>}
-                        <p><strong>Amount:</strong> {registrationStatus.amount} {registrationStatus.currency || 'INR'}</p>
+                        <p><strong>Amount:</strong> {registrationStatus.amount} {registrationStatus.currency || 'USD'}</p>
                         <p><strong>Previous Payment Method:</strong> {registrationStatus.paymentMethod}</p>
                         <p><strong>Registration Type:</strong> {registrationStatus.registrationType || 'Author'}</p>
                         <p><strong>Submitted:</strong> {new Date(registrationStatus.registrationDate).toLocaleDateString()}</p>
@@ -1208,21 +1208,21 @@ const EnhancedUniversalRegistrationForm: React.FC = React.memo(() => {
                                                 <h3 className="font-bold text-lg mb-1">{category.label}</h3>
                                                 <p className="text-sm text-gray-600 mb-2">{category.description}</p>
                                                 <p className="text-2xl font-bold text-blue-600">
-                                                    {category.currency === 'INR' ? '₹' : category.currency === 'IDR' ? 'Rp ' : '$'}
+                                                    {category.currency === 'IDR' ? 'Rp ' : '$'}
                                                     {price.toLocaleString()}
                                                 </p>
                                                 {membershipStatus?.isMember && category.societyDiscountPrice && (
                                                     <p className="text-xs text-green-600 mt-2">
                                                         <span className="line-through text-gray-400">
-                                                            {category.currency === 'INR' ? '₹' : category.currency === 'IDR' ? 'Rp ' : '$'}
+                                                            {category.currency === 'IDR' ? 'Rp ' : '$'}
                                                             {category.price.toLocaleString()}
                                                         </span>
-                                                        {' '}Save {category.currency === 'INR' ? '₹' : category.currency === 'IDR' ? 'Rp ' : '$'}{savings.toLocaleString()} with Society Membership!
+                                                        {' '}Save {category.currency === 'IDR' ? 'Rp ' : '$'}{savings.toLocaleString()} with Society Membership!
                                                     </p>
                                                 )}
                                                 {!membershipStatus?.isMember && category.societyDiscountPrice && userCountry === 'India' && (
                                                     <p className="text-xs text-blue-600 mt-2">
-                                                        💡 Register to Society for Cyber Intelligent Systems to save {category.currency === 'INR' ? '₹' : category.currency === 'IDR' ? 'Rp ' : '$'}{savings.toLocaleString()}!
+                                                        💡 Register to Society for Cyber Intelligent Systems to save {category.currency === 'IDR' ? 'Rp ' : '$'}{savings.toLocaleString()}!
                                                     </p>
                                                 )}
                                             </div>

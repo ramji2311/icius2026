@@ -614,15 +614,27 @@ export const getAllPapers = async (req, res) => {
             ];
         }
 
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 20;
+        const skip = (page - 1) * limit;
+
+        const total = await PaperSubmission.countDocuments(query);
+        const pages = Math.ceil(total / limit) || 1;
+
         const papers = await PaperSubmission.find(query)
             .select('-pdfBase64 -versions')
             .populate('assignedEditor', 'username email')
             .populate('assignedReviewers', 'username email')
-            .sort({ createdAt: -1 });
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
 
         return res.status(200).json({
             success: true,
             count: papers.length,
+            total,
+            page,
+            pages,
             papers
         });
     } catch (error) {

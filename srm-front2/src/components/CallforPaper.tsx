@@ -203,11 +203,11 @@ const CallForPapers = () => {
                     🇮🇳 Indian Participant
                   </td>
                   <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Authors</td>
-                  <td className="border border-gray-300 px-4 py-3 text-right font-semibold text-blue-700">₹24,000 (300 USD)</td>
+                  <td className="border border-gray-300 px-4 py-3 text-right font-semibold text-blue-700">$300</td>
                 </tr>
                 <tr className="bg-gray-50 hover:bg-gray-100 transition-colors">
                   <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Listeners</td>
-                  <td className="border border-gray-300 px-4 py-3 text-right font-semibold text-blue-700">₹12,000 (150 USD)</td>
+                  <td className="border border-gray-300 px-4 py-3 text-right font-semibold text-blue-700">$200</td>
                 </tr>
                 <tr className="bg-white hover:bg-gray-100 transition-colors">
                   <td rowSpan={2} className="border border-gray-300 px-4 py-3 text-gray-800 font-bold bg-gray-100">
@@ -218,7 +218,7 @@ const CallForPapers = () => {
                 </tr>
                 <tr className="bg-white hover:bg-gray-100 transition-colors">
                   <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">Listeners</td>
-                  <td className="border border-gray-300 px-4 py-3 text-right font-semibold text-blue-700">$200</td>
+                  <td className="border border-gray-300 px-4 py-3 text-right font-semibold text-blue-700">$250</td>
                 </tr>
               </tbody>
             </table>

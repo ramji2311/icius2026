@@ -17,23 +17,28 @@ export const useEditorDashboard = () => {
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [totalPapers, setTotalPapers] = useState(0);
 
     const { on, off } = useWebSocket();
 
-    const fetchDashboardData = useCallback(async () => {
+    const fetchDashboardData = useCallback(async (currentPage = page) => {
         try {
             setLoading(true);
             const [papersRes, reviewersRes] = await Promise.all([
-                api.get('/api/editor/papers'),
+                api.get(`/api/editor/papers?page=${currentPage}&limit=20`),
                 api.get('/api/editor/reviewers').catch(() => ({ data: { reviewers: [] } }))
             ]);
 
             const allPapers = papersRes.data.papers || [];
             setPapers(allPapers);
             setReviewers(reviewersRes.data.reviewers || []);
+            setTotalPages(papersRes.data.pages || 1);
+            setTotalPapers(papersRes.data.total || allPapers.length);
 
             setStats({
-                totalPapers: allPapers.length,
+                totalPapers: papersRes.data.total || allPapers.length,
                 acceptedPapers: allPapers.filter((p: any) => p.status === 'Accepted').length,
                 rejectedPapers: allPapers.filter((p: any) => p.status === 'Rejected').length,
                 underReview: allPapers.filter((p: any) =>
@@ -46,7 +51,7 @@ export const useEditorDashboard = () => {
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [page]);
 
     const verifyAccess = useCallback(async () => {
         try {
@@ -60,7 +65,7 @@ export const useEditorDashboard = () => {
 
     useEffect(() => {
         verifyAccess();
-    }, [verifyAccess]);
+    }, [verifyAccess, page]);
 
     useEffect(() => {
         const handleUpdate = () => fetchDashboardData();
@@ -86,6 +91,10 @@ export const useEditorDashboard = () => {
         stats,
         loading,
         error,
-        fetchDashboardData
+        fetchDashboardData,
+        page,
+        setPage,
+        totalPages,
+        totalPapers
     };
 };

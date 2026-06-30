@@ -110,7 +110,7 @@ router.post('/submit-listener', verifyJWT, async (req, res) => {
             paymentMethod: finalPaymentMethod,
             transactionId,
             amount,
-            currency: country === 'India' ? 'INR' : country === 'Indonesia' ? 'IDR' : 'USD',
+            currency: 'USD',
             paymentScreenshot,
             registrationCategory,
             isScisMember,
@@ -203,9 +203,17 @@ router.get('/admin/all-listeners', verifyJWT, adminMiddleware, async (req, res) 
             ];
         }
 
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 20;
+        const skip = (page - 1) * limit;
+
+        const totalQueryDocs = await ListenerRegistration.countDocuments(query);
+        const pages = Math.ceil(totalQueryDocs / limit) || 1;
+
         const registrations = await ListenerRegistration.find(query)
             .sort({ createdAt: -1 })
-            .limit(100);
+            .skip(skip)
+            .limit(limit);
 
         const stats = {
             total: await ListenerRegistration.countDocuments(),
@@ -216,6 +224,9 @@ router.get('/admin/all-listeners', verifyJWT, adminMiddleware, async (req, res) 
 
         return res.status(200).json({
             success: true,
+            page,
+            pages,
+            total: totalQueryDocs,
             registrations,
             stats
         });

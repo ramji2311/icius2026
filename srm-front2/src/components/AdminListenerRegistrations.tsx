@@ -42,10 +42,13 @@ const AdminListenerRegistrations: React.FC = () => {
     const [statusFilter, setStatusFilter] = useState<string>('all');
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [totalListeners, setTotalListeners] = useState(0);
 
     useEffect(() => {
         fetchRegistrations();
-    }, [statusFilter, searchQuery]);
+    }, [statusFilter, searchQuery, page]);
 
     const fetchRegistrations = async () => {
         try {
@@ -54,13 +57,17 @@ const AdminListenerRegistrations: React.FC = () => {
             const response = await api.get('/api/listener/admin/all-listeners', {
                 params: {
                     status: statusFilter,
-                    search: searchQuery
+                    search: searchQuery,
+                    page,
+                    limit: 20
                 }
             });
 
             if (response.data.success) {
                 setFilteredRegistrations(response.data.registrations);
                 setStats(response.data.stats);
+                setTotalPages(response.data.pages || 1);
+                setTotalListeners(response.data.total || 0);
             }
         } catch (error: any) {
             console.error('Error fetching listener registrations:', error);
@@ -213,7 +220,10 @@ const AdminListenerRegistrations: React.FC = () => {
                             type="text"
                             placeholder="Search by email, name, or registration number..."
                             value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onChange={(e) => {
+                                setSearchQuery(e.target.value);
+                                setPage(1);
+                            }}
                             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         />
                     </div>
@@ -222,7 +232,10 @@ const AdminListenerRegistrations: React.FC = () => {
                     <div>
                         <select
                             value={statusFilter}
-                            onChange={(e) => setStatusFilter(e.target.value)}
+                            onChange={(e) => {
+                                setStatusFilter(e.target.value);
+                                setPage(1);
+                            }}
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         >
                             <option value="all">All Status</option>
@@ -293,7 +306,7 @@ const AdminListenerRegistrations: React.FC = () => {
                                         <td className="px-6 py-4">
                                             <div>
                                                 <p className="font-semibold text-gray-800">
-                                                    {registration.currency === 'INR' ? '₹' : registration.currency === 'IDR' ? 'Rp ' : '$'}
+                                                    {registration.currency === 'IDR' ? 'Rp ' : '$'}
                                                     {registration.amount.toLocaleString()}
                                                 </p>
                                                 <p className="text-sm text-gray-600">{registration.paymentMethod}</p>
@@ -360,6 +373,27 @@ const AdminListenerRegistrations: React.FC = () => {
                     </table>
                 </div>
             </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+                <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow mt-4">
+                    <button
+                        disabled={page <= 1}
+                        onClick={() => setPage((p) => Math.max(1, p - 1))}
+                        className={`px-4 py-2 rounded font-medium ${page <= 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-blue-50 text-blue-600 hover:bg-blue-100'}`}
+                    >
+                        Previous
+                    </button>
+                    <span className="text-sm text-gray-600">Page {page} of {totalPages} ({totalListeners} total)</span>
+                    <button
+                        disabled={page >= totalPages}
+                        onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                        className={`px-4 py-2 rounded font-medium ${page >= totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-blue-50 text-blue-600 hover:bg-blue-100'}`}
+                    >
+                        Next
+                    </button>
+                </div>
+            )}
 
             {/* Screenshot Modal */}
             {selectedImage && (

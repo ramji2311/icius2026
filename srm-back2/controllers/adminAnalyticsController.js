@@ -111,7 +111,7 @@ export const getAnalyticsSummary = async (req, res) => {
             success: true,
             categories: categories.filter(Boolean).sort(),
             conferenceTotals: {
-                currency: 'INR',
+                currency: 'USD',
                 registrationPaymentsVerified: registrationPayments,
                 finalPaymentsVerified: finalPayments,
                 listenerPaymentsVerified: listenerPayments,
@@ -412,7 +412,7 @@ export const exportAcceptedPapersExcel = async (req, res) => {
             'E-Mail',
             'Plag %',
             'Status',
-            'Amount (INR)',
+            'Amount (USD)',
             'Registered Y/N',
             'UNIVERSITY (repeat)',
             'Remarks',

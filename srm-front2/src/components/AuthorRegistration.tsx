@@ -17,7 +17,7 @@ interface RegistrationCategory {
   id: string;
   name: string;
   price: number;
-  currency: 'INR' | 'USD';
+  currency: 'USD';
   description: string;
 }
 
@@ -42,15 +42,15 @@ const AuthorRegistration: React.FC = () => {
     {
       id: 'indian-author',
       name: 'Indian Author',
-      price: 24000,
-      currency: 'INR',
+      price: 300,
+      currency: 'USD',
       description: 'For Indian authors'
     },
     {
       id: 'indian-listener',
       name: 'Indian Listener',
-      price: 12000,
-      currency: 'INR',
+      price: 200,
+      currency: 'USD',
       description: 'For Indian listeners/attendees'
     },
     {
@@ -63,7 +63,7 @@ const AuthorRegistration: React.FC = () => {
     {
       id: 'foreign-listener',
       name: 'Foreign Listener',
-      price: 200,
+      price: 250,
       currency: 'USD',
       description: 'For international listeners'
     },
@@ -196,7 +196,7 @@ const AuthorRegistration: React.FC = () => {
       formData.append('transactionId', transactionId);
       formData.append('registrationCategory', registrationCategory);
       formData.append('amount', calculateTotalAmount().toString());
-      formData.append('currency', registrationCategories.find(cat => cat.id === registrationCategory)?.currency || 'INR');
+      formData.append('currency', registrationCategories.find(cat => cat.id === registrationCategory)?.currency || 'USD');
       formData.append('paperCount', selectedPapers.size.toString());
       formData.append('paymentScreenshot', paymentScreenshot);
       
