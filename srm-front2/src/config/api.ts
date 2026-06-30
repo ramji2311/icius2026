@@ -3,9 +3,9 @@ import axios from 'axios';
 // Always send cookies (including HTTP-only auth cookie) with requests
 axios.defaults.withCredentials = true;
 
-// Local backend for temporary development
-const PRIMARY_URL = 'http://localhost:5000';
-const SECONDARY_URL = 'http://localhost:5000';
+// Hosted backend configuration
+const PRIMARY_URL = 'https://icius2026.cloudlab.works';
+const SECONDARY_URL = 'https://icius2026-backend.vercel.app';
 
 // Track current working base URL globally
 let currentBaseUrl = PRIMARY_URL;
