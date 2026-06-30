@@ -3,9 +3,9 @@ import axios from 'axios';
 // Always send cookies (including HTTP-only auth cookie) with requests
 axios.defaults.withCredentials = true;
 
-// Hosted backend configuration
-const PRIMARY_URL = 'https://icius2026.cloudlab.works';
-const SECONDARY_URL = 'https://icius2026-backend.vercel.app';
+// Hosted/local backend configuration
+const PRIMARY_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const SECONDARY_URL = 'http://localhost:5000';
 
 // Track current working base URL globally
 let currentBaseUrl = PRIMARY_URL;
